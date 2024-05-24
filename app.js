@@ -45,13 +45,6 @@ app.get('/citations', function(req, res) {
 });
 
 /* Controllers */
-app.post ('/players', (req, res) => { 
-    players.createEntry(
-        req.body.player_id, 
-        req.body.username, 
-        req.body.session_id
-        )
-});
 
 /* Listener */
 app.listen(PORT, function() {
