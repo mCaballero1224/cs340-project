@@ -45,7 +45,21 @@ app.get('/citations', function(req, res) {
 });
 
 /* Controllers */
-
+app.post ('/players', (req,res) => { 
+    players.createEntry(
+        req.body.player_id, 
+        req.body.username, 
+        req.body.session_id
+        )
+        .then(entry => {
+            console.log(`"${entry.player_id}" was added to the table.`);
+            res.status(201).json(entry);
+        })
+        .catch(error => {
+            console.log(error);
+            res.status(400).json({ Error: 'The entry was not added, please try again.' });
+        });
+});
 
 /* Listener */
 app.listen(PORT, function() {
