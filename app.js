@@ -25,11 +25,11 @@ app.get('/characters', function(req, res) {
 });
 
 app.get('/players', function(req, res) {
-	res.render('players', {pageTitle: 'PlayersDB', flavorText: 'Information about our users'});
+	let query2 = "SELECT * FROM Players;";
+	res.render('players', {pageTitle: 'PlayersDB', flavorText: 'Information about our users'}, query2);
 });
 
 app.get('/sessions', function(req, res) {
-	req.query1()
 	res.render('sessions', {pageTitle: 'SessionsDB', flavorText: 'Information about currently running game sessions'});
 });
 
