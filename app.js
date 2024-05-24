@@ -21,9 +21,24 @@ app.get('/', function(req, res) {
 
 app.get('/characters', function(req, res) {
 	let query1 = "SELECT * FROM Characters;";
-	res.render('characters', {pageTitle: 'Characters', flavorText: 'Information about characters created by users'});
+	res.render('characters', {pageTitle: 'CharactersDB', flavorText: 'Information about characters created by users'});
 });
 
+app.get('/players', function(req, res) {
+	res.render('index', {pageTitle: 'PlayersDB', flavorText: 'Information about our users'});
+});
+
+app.get('/sessions', function(req, res) {
+	res.render('index', {pageTitle: 'SessionsDB', flavorText: 'Information about currently running game sessions'});
+});
+
+app.get('/items', function(req, res) {
+	res.render('index', {pageTitle: 'ItemsDB', flavorText: 'Information about available in-game items'});
+});
+
+app.get('/character_items', function(req, res) {
+	res.render('index', {pageTitle: 'CharacterItemsDB', flavorText: 'Intersection table describing what characters have what items.'});
+});
 
 app.get('/citations', function(req, res) {
 	res.render('citations', {pageTitle: 'Citations', flavorText: 'Because plagiarism bad'});
