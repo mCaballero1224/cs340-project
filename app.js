@@ -25,16 +25,15 @@ app.get('/characters', function(req, res) {
 });
 
 app.get('/players', function(req, res) {
-	SELECT * FROM ;
-	res.render('index', {pageTitle: 'PlayersDB', flavorText: 'Information about our users'});
+	res.render('players', {pageTitle: 'PlayersDB', flavorText: 'Information about our users'});
 });
 
 app.get('/sessions', function(req, res) {
-	res.render('index', {pageTitle: 'SessionsDB', flavorText: 'Information about currently running game sessions'});
+	res.render('sessions', {pageTitle: 'SessionsDB', flavorText: 'Information about currently running game sessions'});
 });
 
 app.get('/items', function(req, res) {
-	res.render('index', {pageTitle: 'ItemsDB', flavorText: 'Information about available in-game items'});
+	res.render('items', {pageTitle: 'ItemsDB', flavorText: 'Information about available in-game items'});
 });
 
 app.get('/character_items', function(req, res) {
