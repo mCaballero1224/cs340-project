@@ -29,6 +29,7 @@ app.get('/players', function(req, res) {
 });
 
 app.get('/sessions', function(req, res) {
+	req.query1()
 	res.render('sessions', {pageTitle: 'SessionsDB', flavorText: 'Information about currently running game sessions'});
 });
 
@@ -45,9 +46,7 @@ app.get('/citations', function(req, res) {
 });
 
 /* Controllers */
-app.post('/players', (req, res) => {
-	query1
-})
+
 
 /* Listener */
 app.listen(PORT, function() {
