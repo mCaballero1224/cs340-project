@@ -24,7 +24,8 @@ app.get('/characters', function(req, res) {
 	res.render('characters', {pageTitle: 'CharactersDB', flavorText: 'Information about characters created by users'});
 });
 
-app.get('/players.hbs', function(req, res) {
+app.get('/players', function(req, res) {
+	SELECT * FROM ;
 	res.render('index', {pageTitle: 'PlayersDB', flavorText: 'Information about our users'});
 });
 
