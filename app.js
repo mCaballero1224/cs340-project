@@ -45,6 +45,9 @@ app.get('/citations', function(req, res) {
 });
 
 /* Controllers */
+app.post('/players', (req, res) => {
+	query1
+})
 
 /* Listener */
 app.listen(PORT, function() {
