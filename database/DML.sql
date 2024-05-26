@@ -1,10 +1,11 @@
 --DML file that will be used for changes with no actual data to CRUD
 
 -- Create data, insert something into each table
-INSERT INTO Sessions (session_id, num_players, map_location)
+INSERT INTO Sessions (session_id, start_time, num_players, map_location)
 
 VALUES (
     :session_id,
+    :start_time_from_dropdown_Input,
     :num_players,
     :map_location
 );
@@ -14,13 +15,14 @@ INSERT INTO Players (player_id, username, session_id)
 VALUES (
     :player_id,
     :username,
-    :session_id
+    :session_id_from_the_dropdown_Input
 );
 
-INSERT INTO Characters (character_id, name, level, experience, agility, strength, magic, health)
+INSERT INTO Characters (character_id, player_id, name, level, experience, agility, strength, magic, health)
 
 VALUES (
     :character_id,
+    :player_id_from_dropdown_Input,
     :name,
     :level,
     :strenght,
@@ -41,33 +43,32 @@ VALUES (
 INSERT INTO Character_Items (character_id, item_id, quantity)
 
 VALUES (
-    :character_id,
-    :item_id,
+    :character_id_from_dropdown_Input,
+    :item_id_from_dropdown_Input,
     :quantity
 );
 
 
---Select (Read) that shows all data in the table 
-SELECT * FROM Items;
+--Get all information in each table/page 
+SELECT session_id, start_time, num_players, map_location FROM Sessions;
 
-SELECT * FROM Players;
+SELECT player_id, username, session_id FROM Players;
 
-SELECT * FROM Characters;
+SELECT character_id, player_id, name, level, experience, agility, strength, magic, health FROM Characters;
 
-SELECT * FROM Sessions;
+SELECT item_id, item_desc, item_type, item_stat FROM Items;
 
-SELECT * FROM Character_Items;
+SELECT character_id, item_id, quantity FROM Character_Items;
 
+--Dynamic read, get all players in a specific session
 SELECT player_id FROM Players
-WHERE session_id = 402
-ORDER BY player_id DES;
+WHERE session_id = :session_id_from_the_dropdown_Input;
 
--- Delete data, delete one thing from a table
-SET FOREIGN_KEY_CHECKS = 0;
+-- Delete an item
 DELETE FROM Items
-WHERE item_desc = 'gun';
+WHERE item_desc = :item_desc_selected_from_the_items_page;
 
--- Update data
+-- Update a session
 UPDATE Sessions
-SET num_players = 2
-WHERE session_id = 403;
+SET num_players = :num_players
+WHERE session_id = :session_id_from_the_dropdown_Input;
