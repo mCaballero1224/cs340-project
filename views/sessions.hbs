@@ -1,23 +1,25 @@
-<main>
-    <section>
-	<h2>Sessions</h2>
-	<article>
-	    <p>This is a table of the current sessions.</p>
-	</article>
-	
-	<article>
-	    <table>
-		<caption>Sessions</caption>
-		<thead>
-		    <tr>
-			<th>Session ID</th>
-			<th>Start Time</th>
-			<th>Number of Players</th>
-			<th>Map Location</th>
-		    </tr>
-		</thead>
-	    </table>
-	</article>
-    </section>
-
-</main>
+{{!-- Create a table --}}
+<table>
+  {{!-- Header Section --}}
+	<thead>
+    {{!-- For just the first row, we print each key of the row object as a header cell so we know what each column menas when the page renders --}}
+		<tr>
+			{{#each data.[0]}}
+			<th>
+				{{@key}}
+			</th>
+			{{/each}}	
+		</tr>
+	</thead>
+  {{!-- Body section --}}
+	<tbody>
+    {{!-- For each row, print the keys and attributes --}}
+		{{#each data}}
+		<tr>
+			<td>{{this.session_id}}</td>
+			<td>{{this.start_time}}</td>
+			<td>{{this.map_location}}</td>
+		</tr>
+    {{/each}}
+	</tbody>
+</table>

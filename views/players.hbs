@@ -1,18 +1,26 @@
-<main>
-    <section>
-	<article>
-	    <table>
-		<caption>Current Players</caption>
-		<thead>
-		    <tr>
-			<th>Player ID</th>
-			<th>User Name</th>
-			<th>Session ID</th>
-			<th>Character</th>
-		    </tr>
-		</thead>
-	    </table>
-	</article>
-    </section>
+{{!-- Create a table --}}
+<table>
+  {{!-- Header Section --}}
+	<thead>
+    {{!-- For just the first row, we print each key of the row object as a header cell so we know what each column menas when the page renders --}}
+		<tr>
+			{{#each data.[0]}}
+			<th>
+				{{@key}}
+			</th>
+			{{/each}}	
+		</tr>
+	</thead>
+  {{!-- Body section --}}
+	<tbody>
+    {{!-- For each row, print the keys and attributes --}}
+		{{#each data}}
+		<tr>
+			<td>{{this.player_id}}</td>
+			<td>{{this.username}}</td>
+			<td>{{this.session_id}}</td>
+		</tr>
+    {{/each}}
+	</tbody>
+</table>
 
-</main>

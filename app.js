@@ -21,23 +21,37 @@ app.get('/', function(req, res) {
 
 app.get('/characters', function(req, res) {
 	let query1 = "SELECT * FROM Characters;";
-	res.render('characters', {pageTitle: 'CharactersDB', flavorText: 'Information about characters created by users'});
+  db.pool.query(query1, function(error, rows, fields) {
+    res.render('characters', {pageTitle: 'CharactersDB', flavorText: 'Information about characters created by users', data: rows});
+  });
 });
 
 app.get('/players', function(req, res) {
-	res.render('index', {pageTitle: 'PlayersDB', flavorText: 'Information about our users'});
+	let query1 = "SELECT * FROM Players;";
+  db.pool.query(query1, function(error, rows, fields) {
+	res.render('players', {pageTitle: 'PlayersDB', flavorText: 'Information about our users', data: rows});
+  });
 });
 
 app.get('/sessions', function(req, res) {
-	res.render('index', {pageTitle: 'SessionsDB', flavorText: 'Information about currently running game sessions'});
+	let query1 = "SELECT * FROM Sessions;";
+  db.pool.query(query1, function(error, rows, fields) {
+    res.render('sessions', {pageTitle: 'SessionsDB', flavorText: 'Information about currently running game sessions', data: rows});
+  });
 });
 
 app.get('/items', function(req, res) {
-	res.render('index', {pageTitle: 'ItemsDB', flavorText: 'Information about available in-game items'});
+	let query1 = "SELECT * FROM Items;";
+  db.pool.query(query1, function(error, rows, fields) {
+    res.render('items', {pageTitle: 'ItemsDB', flavorText: 'Information about available in-game items', data: rows});
+  });
 });
 
 app.get('/character_items', function(req, res) {
-	res.render('index', {pageTitle: 'CharacterItemsDB', flavorText: 'Intersection table describing what characters have what items.'});
+  let query1 = "SELECT * FROM  Character_Items;";
+  db.pool.query(query1, function(error, rows, fields) {
+    res.render('character_items', {pageTitle: 'CharacterItemsDB', flavorText: 'Intersection table describing what characters have what items.', data: rows});
+  });
 });
 
 app.get('/citations', function(req, res) {

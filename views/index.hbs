@@ -1,0 +1,31 @@
+{{!-- Create a table --}}
+<table>
+  {{!-- Header Section --}}
+	<thead>
+    {{!-- For just the first row, we print each key of the row object as a header cell so we know what each column menas when the page renders --}}
+		<tr>
+			{{#each data.[0]}}
+			<th>
+				{{@key}}
+			</th>
+			{{/each}}	
+		</tr>
+	</thead>
+  {{!-- Body section --}}
+	<tbody>
+    {{!-- For each row, print the keys and attributes --}}
+		{{#each data}}
+		<tr>
+			<td>{{this.character_id}}</td>
+			<td>{{this.player_id}}</td>
+			<td>{{this.name}}</td>
+			<td>{{this.experience}}</td>
+			<td>{{this.agility}}</td>
+			<td>{{this.strength}}</td>
+			<td>{{this.magic}}</td>
+			<td>{{this.health}}</td>
+		</tr>
+    {{/each}}
+	</tbody>
+</table>
+
