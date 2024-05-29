@@ -1,0 +1,170 @@
+:root {
+  /* CSS HEX */
+  --gunmetal: #272d2dff;
+  --steel-blue: #3e7cb1ff;
+  --ut-orange: #ff8200ff;
+  --aquamarine: #5dfdcbff;
+  --persian-red: #cc2936ff;
+  --ghost-white: #f6f8ffff;
+
+  /* CSS HSL */
+  --gunmetal: hsla(180, 7%, 16%, 1);
+  --steel-blue: hsla(208, 48%, 47%, 1);
+  --ut-orange: hsla(31, 100%, 50%, 1);
+  --aquamarine: hsla(161, 98%, 68%, 1);
+  --persian-red: hsla(355, 67%, 48%, 1);
+  --ghost-white: hsla(227, 100%, 98%, 1);
+}
+
+body {
+  background-color: var(--ghost-white);
+  color: var(--gunmetal);
+  font-family: 'Courier New', monospace;
+  padding: 0;
+  margin: 0;
+}
+
+header {
+  padding: 2%;
+}
+
+footer {
+  text-align: center;
+}
+
+nav {
+  padding: 0; 
+}
+
+a {
+  color: var(--steel-blue);
+}
+
+a:hover {
+  color: var(--persian-red);
+  font-weight: bold;
+}
+
+table {
+  border-collapse: collapse;
+  margin: 25px 0;
+  width: 90%;
+  box-shadow: 0 0 20px rgba(0,0,0,0.15);
+  margin: 0 auto;
+}
+
+th {
+  text-align: left;
+  border-bottom: 3px solid var(--gunmetal);
+  padding: 5px;
+}
+
+td {
+  padding: 5px;
+}
+
+form {
+  padding: 2%;
+}
+
+label, input, select {
+  display: block;
+  margin: 2%;
+}
+
+input[type="submit"] {
+  background-color: var(--aquamarine);
+  margin: 20px auto;
+  padding: 10px 20px;
+  font-weight: bold;
+  border-radius: 5px;
+  border: 1px solid var(--gunmetal);
+}
+
+nav {
+  padding: 0;
+  margin: 0;
+  height: 30px;
+}
+
+.navbar {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  background-color: var(--gunmetal);
+  padding-left: 5px; 
+  height: 30px;
+  margin: 0 auto;
+}
+
+.nav-item {
+  list-style: none;
+  padding: 0;
+  margin: auto 0;
+}
+
+.nav-item:hover {
+  background-color: var(--ut-orange);
+}
+
+.nav-item:hover .nav-link {
+  color: var(--gunmetal);
+}
+
+
+.nav-link{
+  text-decoration: none;
+  color: var(--ghost-white);
+  font-weight: bolder;
+  font-size: 1.1em;
+  padding: 10px 20px;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+}
+
+.container {
+  
+}
+
+.row {
+  display: flex; 
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+}
+
+.citation-img {
+  margin: 2%;
+  padding: 2%;
+}
+
+
+
+.hidden {
+  display: none;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.footnote {
+  font-size: .8em;
+  padding: 2%;
+}
+
+.footnote:before {
+  content: "*";
+}
+
+@media screen and (max-width: 480px) {
+  table {
+    max-width: 400px;
+    font-size: 0.8em;
+  }
+}
