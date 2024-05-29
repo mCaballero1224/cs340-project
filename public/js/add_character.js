@@ -1,4 +1,3 @@
-/*
 const addCharacterForm = document.getElementById('add-character-form');
 
 addCharacterForm.addEventListener("submit", function(e) {
@@ -101,7 +100,7 @@ addRowToTable = (data) => {
   deleteCell.classList.add("delete-link");
   deleteCell.innerHTML = `Delete`;
   deleteCell.onclick = function() {
-    deletePerson(newRow.character_id);
+    deleteCharacter(newRow.character_id);
   }
   characterIdCell.innerText = newRow.character_id;
   playerIdCell.innerText = newRow.player_id;
@@ -128,4 +127,3 @@ addRowToTable = (data) => {
   // add the row to the table
   currentTable.appendChild(row);
 };
-*/
