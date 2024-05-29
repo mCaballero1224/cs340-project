@@ -4,6 +4,8 @@
 	<thead>
     {{!-- For just the first row, we print each key of the row object as a header cell so we know what each column menas when the page renders --}}
 		<tr>
+			<th><a href="">New</a></th>
+			<th></th>
 			{{#each data.[0]}}
 			<th>
 				{{@key}}
@@ -16,8 +18,11 @@
     {{!-- For each row, print the keys and attributes --}}
 		{{#each data}}
 		<tr>
+			<td><a href="">Edit</a></td>
+			<td><a href="">Delete</a></td>
 			<td>{{this.session_id}}</td>
 			<td>{{this.start_time}}</td>
+			<td>{{this.num_players}}</td>
 			<td>{{this.map_location}}</td>
 		</tr>
     {{/each}}
