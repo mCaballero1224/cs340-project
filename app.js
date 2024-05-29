@@ -26,9 +26,15 @@ app.get('/', function(req, res) {
 });
 
 app.get('/characters', function(req, res) {
-	let query1 = "SELECT * FROM Characters;";
+  let query1 = "SELECT * FROM Players;";
+	let query2 = "SELECT * FROM Characters;";
+
   db.pool.query(query1, function(error, rows, fields) {
-    res.render('characters', {pageTitle: 'CharactersDB', flavorText: 'Information about characters created by users', data: rows});
+      let players = rows;
+    db.pool.query(query2, function(error, rows, fields) {
+      console.log(players);
+      res.render('characters', {pageTitle: 'CharactersDB', flavorText: 'Information about characters created by users', data: rows, players: players});
+    });
   });
 });
 
@@ -62,6 +68,76 @@ app.get('/character_items', function(req, res) {
 
 app.get('/citations', function(req, res) {
 	res.render('citations', {pageTitle: 'Citations', flavorText: 'Because plagiarism bad'});
+});
+
+app.post('/add-character', function(req, res) {
+  let data = req.body;
+  console.log(data);
+  // capture NULL values
+  let playerId = data.player_id;
+  if (isNaN(playerId)) {
+    playerId = 'NULL'
+  }
+  
+  let level = data.level;
+  if (isNaN(level)) {
+    level = 'NULL'
+  }
+  
+  let experiencePoints = data.experience;
+  if (isNaN(experiencePoints)) {
+    experiencePoints = 'NULL'
+  }
+  
+  let agility = data.agility;
+  if (isNaN(experiencePoints)) {
+    agility = 'NULL'
+  }
+  
+  let strength = data.strength;
+  if (isNaN(strength)) {
+    strength = 'NULL'
+  }
+  
+  let magic = data.magic;
+  if (isNaN(magic)) {
+    magic = 'NULL'
+  }
+  
+  let health = data.health;
+  if (isNaN(health)) {
+    health = 'NULL'
+  }
+  /*
+  console.log(playerId);
+  console.log(data.name);
+  console.log(level);
+  console.log(experiencePoints);
+  console.log(agility);
+  console.log(strength);
+  console.log(magic);
+  console.log(health);
+  */
+  
+  query1 = `INSERT INTO Characters (player_id, name, level, experience, agility, strength, magic, health) VALUES (${playerId}, '${data.name}', ${level}, ${experiencePoints}, ${agility}, ${strength}, ${magic}, ${health});`;
+  db.pool.query(query1, function(error, rows, fields) {
+    if (error) {
+        console.log(error);
+	res.sendStatus(400);
+    } else {
+      // if there was no error, perform a SELECT * on Characters
+      query2 = `SELECT * FROM Characters;`;
+      db.pool.query(query2, function(error, rows, fields) {
+        if (error) {
+          console.log(error);
+          res.sendStatus(400);
+        } else {
+          console.log(rows);
+          res.send(rows);
+        }
+      });
+    }
+  });
 });
 
 /* Controllers */
