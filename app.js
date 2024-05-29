@@ -26,14 +26,27 @@ app.get('/', function(req, res) {
 });
 
 app.get('/characters', function(req, res) {
-  let query1 = "SELECT * FROM Players;";
-	let query2 = "SELECT * FROM Characters;";
+  let query1;
+  let query2;
+  let characters;
+  let players;
 
+  query1 = `SELECT * FROM Players;`;
+
+  if (req.query.name === undefined) {
+    query2 = `SELECT * FROM Characters;`;
+  }
+  else {
+    console.log(req.query.name);
+    query2 = `SELECT * FROM Characters WHERE name LIKE "${req.query.name}%";`;
+  }
   db.pool.query(query1, function(error, rows, fields) {
-      let players = rows;
+    let players = rows;
+    console.log(players);
     db.pool.query(query2, function(error, rows, fields) {
-      console.log(players);
-      res.render('characters', {pageTitle: 'CharactersDB', flavorText: 'Information about characters created by users', data: rows, players: players});
+      let characters = rows;
+      console.log(rows);
+      res.render('characters', {pageTitle: 'CharactersDB', flavorText: 'Information about characters created by our users', data: characters, players: players});
     });
   });
 });
@@ -72,7 +85,6 @@ app.get('/citations', function(req, res) {
 
 app.post('/add-character', function(req, res) {
   let data = req.body;
-  console.log(data);
   // capture NULL values
   let playerId = data.player_id;
   if (isNaN(playerId)) {
@@ -108,16 +120,6 @@ app.post('/add-character', function(req, res) {
   if (isNaN(health)) {
     health = 'NULL'
   }
-  /*
-  console.log(playerId);
-  console.log(data.name);
-  console.log(level);
-  console.log(experiencePoints);
-  console.log(agility);
-  console.log(strength);
-  console.log(magic);
-  console.log(health);
-  */
   
   query1 = `INSERT INTO Characters (player_id, name, level, experience, agility, strength, magic, health) VALUES (${playerId}, '${data.name}', ${level}, ${experiencePoints}, ${agility}, ${strength}, ${magic}, ${health});`;
   db.pool.query(query1, function(error, rows, fields) {
@@ -139,6 +141,44 @@ app.post('/add-character', function(req, res) {
     }
   });
 });
+
+app.delete("/delete-character", function(req, res, next) {
+  let data = req.body;
+  let characterId = parseInt(data.id);
+  let deleteCharacter = `DELETE FROM Characters WHERE character_id = ?`;
+  let query1 = `SET FOREIGN_KEY_CHECKS = 0;`;
+  let query2 = `SET AUTOCOMMIT = 0;`;
+
+  db.pool.query(query1, function(error){
+    if (error) {
+      res.sendStatus(400);
+    }
+    else {
+      db.pool.query(query2, function(error){
+        if (error) {
+          console.log(error);
+          res.sendStatus(400);
+        }
+        else {
+          console.log('Autocommit disabled');
+          db.pool.query(deleteCharacter, [characterId], function(error, rows, fields) {
+           if (error) {
+            console.log(error);
+             res.sendStatus(400);
+           } 
+           else {
+            res.sendStatus(204);
+           }
+          });
+        }
+      });
+    }
+  });
+});
+
+
+
+
 
 /* Controllers */
 
