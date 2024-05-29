@@ -1,18 +1,24 @@
 /* app.js */
 
 /* SETUP */
+const db = require('./database/db-connector'); // for db connection
 const path = require('path');
+require('dotenv').config();
+
 const express = require('express'); // use express lib for the web server
 const app = express(); // create an instance of the express obj to interact with the server
-const db = require('./database/db-connector'); // for db connection
+
 const { engine } = require('express-handlebars');
 const exphbs = require('express-handlebars'); // import handlebars
 app.engine('.hbs', engine({extname: ".hbs"})); // create an instance of the handlebars engine to process templates
 app.set('view engine', '.hbs'); // tell express to use the handlebars engine whenever encountering a*.hbs file
-PORT = 2077; // because cyberpunk
+
+PORT = process.env.PORT; // because cyberpunk
 
 /* Middleware */
 app.use(express.static(path.join(__dirname, '/public')));
+app.use(express.json());
+app.use(express.urlencoded({extended: true}));
 
 /* Routes */
 app.get('/', function(req, res) {
