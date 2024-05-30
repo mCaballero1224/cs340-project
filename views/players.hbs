@@ -27,4 +27,55 @@
     {{/each}}
 	</tbody>
 </table>
+<div class="form-btn-container">
+  <button class="toggle" onclick="toggleAddForm()">Show/Hide Add Form</button>
+  <button class="toggle" onclick="toggleUpdateForm()">Show/Hide Update Form</button>
+  <button class="toggle" onclick="toggleSearchForm()">Show/Hide Search Form</button>
+</div>
+<div class="form-container">
+  <form class="add-entity-form" id="add-player-form">
+    <fieldset>
+      <legend>Add a Player</legend>
 
+      <label for="input-session-id">SessionID (optional): </label>
+      <select name="input-session-id" id="input-session-id">
+        <option value="">Select a Session</option>
+        {{#each sessions}}
+          <option value="{{this.session_id}}">#{{this.session_id}} ({{this.map_location}})</option>
+        {{/each}}
+      </select>
+
+      <label for="input-player-username">Username: </label>
+      <input type="text" name="input-player-username" id="input-player-username" />
+
+      <input type="submit"/>
+    </fieldset>
+  </form>
+  <form class="update-entity-form" id="update-player-form">
+    <fieldset>
+      <legend>Update a Player</legend>
+      
+      <label for="input-player-id" id="mySelect">PlayerID: </label>
+      <select name="input-player-id" id="input-player-id">
+        <option value="">Select a Player</option>
+        {{#each data}}
+        <option
+        {{/each}}
+      </select>
+
+      <label for="input-player-username">Username: </label>
+      <input type="text" name="input-player-username" id="input-player-username"/>
+    </fieldset>
+  </form>
+  <form class="search-form" id="serach-player-form">
+    <fieldset>
+      <legend>Search by Username</legend>
+      <label for="username">Username: </label>
+      <input type="text" name="username" id="input-username-html-search"/>
+
+      <input type="submit">
+      <a href="/"><button>Reset</button></a>
+    </fieldset>
+  </form>
+</div>
+<script src="./js/players/add_player.js"></script>

@@ -49,9 +49,24 @@ app.get('/characters', function(req, res) {
 });
 
 app.get('/players', function(req, res) {
-	let query1 = "SELECT * FROM Players;";
+  let query1 = "SELECT * FROM Sessions;";
+  let query2 = `SELECT * FROM Players WHERE username LIKE "${req.query.username}%";`;
+
+  if (req.query.username == undefined) {
+    query2 = "SELECT * FROM Players;";
+  }
+
   db.pool.query(query1, function(error, rows, fields) {
-	res.render('players', {pageTitle: 'PlayersDB', flavorText: 'Information about our users', data: rows});
+    if (error) {
+      console.log(error);
+      res.sendStatus(400);
+    }
+    else {
+      let sessions = rows;
+      db.pool.query(query2, function(error, rows, fields) {
+        res.render('players', {pageTitle: 'PlayersDB', flavorText: 'Information about our users', data: rows, sessions: sessions});
+      });
+    }
   });
 });
 
@@ -78,6 +93,39 @@ app.get('/character_items', function(req, res) {
 
 app.get('/citations', function(req, res) {
 	res.render('citations', {pageTitle: 'Citations', flavorText: 'Because plagiarism bad'});
+});
+
+app.post('/add-player', function(req, res) {
+  let data = req.body;
+  console.log(`Data: ${data}`);
+  // capture NULL values
+  let session_id = parseInt(data.session_id);
+  if (isNaN(session_id)) {
+    session_id = 'NULL';
+    console.log(session_id);
+  }
+
+  console.log(session_id);
+
+  query1 = `INSERT INTO Players (username, session_id) VALUES ('${data.username}', ${session_id});`;
+  db.pool.query(query1, function(error, rows, fields) {
+    if (error) {
+        console.log(error);
+	res.sendStatus(400);
+    } else {
+      // if there was no error, perform a SELECT * on Characters
+      query2 = `SELECT * FROM Players;`;
+      db.pool.query(query2, function(error, rows, fields) {
+        if (error) {
+          console.log(error);
+          res.sendStatus(400);
+        } else {
+          console.log(rows);
+          res.send(rows);
+        }
+      });
+    }
+  });
 });
 
 app.post('/add-character', function(req, res) {
