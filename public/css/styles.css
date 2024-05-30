@@ -41,6 +41,11 @@ a {
   color: var(--steel-blue);
 }
 
+p {
+  padding: 2%;
+  margin: 2%;
+}
+
 a:hover {
   color: var(--persian-red);
   font-weight: bold;
