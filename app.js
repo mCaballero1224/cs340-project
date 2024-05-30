@@ -13,7 +13,7 @@ const exphbs = require('express-handlebars'); // import handlebars
 app.engine('.hbs', engine({extname: ".hbs"})); // create an instance of the handlebars engine to process templates
 app.set('view engine', '.hbs'); // tell express to use the handlebars engine whenever encountering a*.hbs file
 
-PORT = process.env.PORT; // because cyberpunk
+PORT = process.env.PORT || 2077; // because cyberpunk
 
 /* Middleware */
 app.use(express.static(path.join(__dirname, '/public')));
@@ -148,6 +148,8 @@ app.delete("/delete-character", function(req, res, next) {
   let deleteCharacter = `DELETE FROM Characters WHERE character_id = ?`;
   let query1 = `SET FOREIGN_KEY_CHECKS = 0;`;
   let query2 = `SET AUTOCOMMIT = 0;`;
+  let query3 = `SET FOREIGN_KEY_CHECKS = 1;`;
+  let query4 = `SET AUTOCOMMIT = 1;`;
 
   db.pool.query(query1, function(error){
     if (error) {
@@ -172,6 +174,18 @@ app.delete("/delete-character", function(req, res, next) {
           });
         }
       });
+    }
+  });
+
+  db.pool.query(query3, function(error) {
+    if (error) {
+      console.log(error);
+    } else {
+      db.pool.query(query4, function(error) {
+        if (error) {
+          console.log(error);
+        } 
+      }
     }
   });
 });
