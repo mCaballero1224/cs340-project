@@ -37,15 +37,12 @@ app.get('/characters', function(req, res) {
     query2 = `SELECT * FROM Characters;`;
   }
   else {
-    console.log(req.query.name);
     query2 = `SELECT * FROM Characters WHERE name LIKE "${req.query.name}%";`;
   }
   db.pool.query(query1, function(error, rows, fields) {
     let players = rows;
-    console.log(players);
     db.pool.query(query2, function(error, rows, fields) {
       let characters = rows;
-      console.log(rows);
       res.render('characters', {pageTitle: 'CharactersDB', flavorText: 'Information about characters created by our users', data: characters, players: players});
     });
   });
@@ -146,48 +143,46 @@ app.delete("/delete-character", function(req, res, next) {
   let data = req.body;
   let characterId = parseInt(data.id);
   let deleteCharacter = `DELETE FROM Characters WHERE character_id = ?`;
+  let deleteCharacterItems = `DELETE FROM Character_Items WHERE character_id = ?`;
   let query1 = `SET FOREIGN_KEY_CHECKS = 0;`;
-  let query2 = `SET AUTOCOMMIT = 0;`;
-  let query3 = `SET FOREIGN_KEY_CHECKS = 1;`;
-  let query4 = `SET AUTOCOMMIT = 1;`;
+  let query2 = `SET FOREIGN_KEY_CHECKS = 1;`;
 
   db.pool.query(query1, function(error){
     if (error) {
       res.sendStatus(400);
     }
     else {
-      db.pool.query(query2, function(error){
+      db.pool.query(deleteCharacterItems, [characterId], function(error, rows, fields) {
+        console.log("Foreign key checks disabled.");
         if (error) {
           console.log(error);
           res.sendStatus(400);
         }
         else {
-          console.log('Autocommit disabled');
+          console.log(`Items associated with character id #${characterId} deleted.`);
           db.pool.query(deleteCharacter, [characterId], function(error, rows, fields) {
-           if (error) {
-            console.log(error);
-             res.sendStatus(400);
-           } 
-           else {
-            res.sendStatus(204);
-           }
+            if (error) {
+              console.log(error);
+              res.sendStatus(400);
+            }
+            else {
+              console.log(`Character #${characterId} deleted.`);
+              db.pool.query(query2, function(error) {
+                if (error) {
+                  console.log(error);
+                  res.sendStatus(400);
+                } else {
+                  console.log(`Foreign key checks re-enabled.`);
+                  res.sendStatus(204);
+                }
+              });
+            }
           });
         }
       });
     }
   });
 
-  db.pool.query(query3, function(error) {
-    if (error) {
-      console.log(error);
-    } else {
-      db.pool.query(query4, function(error) {
-        if (error) {
-          console.log(error);
-        } 
-      }
-    }
-  });
 });
 
 
