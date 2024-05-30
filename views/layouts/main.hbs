@@ -8,33 +8,38 @@
 		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
 		<title>Future Gadget DB</title>
 		<link rel="stylesheet" type="text/css" href="/css/styles.css" />
+		{{!-- <link rel="icon" type="image/x-icon" href="/assets/favicon.ico"/> --}}
 	</head>
 	<body>
-	<header>
-		<h1>{{pageTitle}}</h1>
-		<p>{{flavorText}}</p>
-	</header>
-	<ul class="nav navbar-nav">
-		<li class="nav-item">
-			<a href="/">Home</a>
-		</li>
-		<li class="nav-item">
-			<a href="/sessions">Sessions</a>
-		</li>
-		<li class="nav-item">
-			<a href="/characters">Characters</a>
-		</li>
-		<li class="nav-item">
-			<a href="/players">Players</a>
-		</li>
-		<li class="nav-item">
-			<a href="/items">Items</a>
-		</li>
-		<li class="nav-item">
-			<a href="/citations">Citations</a>
-		</li>
-	</ul>
-	{{{body}}}
+    <header class="text-center">
+      <img src="/assets/android-chrome-192x192.png"/>
+      <h1>{{pageTitle}}</h1>
+      <p>{{flavorText}}</p>
+    </header>
+    <nav>
+      <ul class="navbar">
+        <li class="nav-item">
+          <a class="nav-link" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/sessions">Sessions</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/characters">Characters</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/players">Players</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/items">Items</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/citations">Citations</a>
+        </li>
+      </ul>
+    </nav>
+    {{{body}}}
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 	</body>
 	<footer class="container text-center">
 		<p>&copy; Michael Caballero & Tiffany Gorseth (2024)</p>

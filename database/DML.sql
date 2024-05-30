@@ -1,11 +1,10 @@
 --DML file that will be used for changes with no actual data to CRUD
 
 -- Create data, insert something into each table
-INSERT INTO Sessions (session_id, start_time, num_players, map_location)
+INSERT INTO Sessions (session_id, num_players, map_location)
 
 VALUES (
     :session_id,
-    :start_time_from_dropdown_Input,
     :num_players,
     :map_location
 );
@@ -15,14 +14,13 @@ INSERT INTO Players (player_id, username, session_id)
 VALUES (
     :player_id,
     :username,
-    :session_id_from_the_dropdown_Input
+    :session_id
 );
 
-INSERT INTO Characters (character_id, player_id, name, level, experience, agility, strength, magic, health)
+INSERT INTO Characters (character_id, name, level, experience, agility, strength, magic, health)
 
 VALUES (
     :character_id,
-    :player_id_from_dropdown_Input,
     :name,
     :level,
     :strenght,
@@ -43,32 +41,34 @@ VALUES (
 INSERT INTO Character_Items (character_id, item_id, quantity)
 
 VALUES (
-    :character_id_from_dropdown_Input,
-    :item_id_from_dropdown_Input,
+    :character_id,
+    :item_id,
     :quantity
 );
 
 
---Get all information in each table/page 
-SELECT session_id, start_time, num_players, map_location FROM Sessions;
+--Select (Read) that shows all data in the table 
+SELECT * FROM Items;
 
-SELECT player_id, username, session_id FROM Players;
+SELECT * FROM Players;
 
-SELECT character_id, player_id, name, level, experience, agility, strength, magic, health FROM Characters;
+SELECT * FROM Characters;
 
-SELECT item_id, item_desc, item_type, item_stat FROM Items;
+SELECT * FROM Sessions;
 
-SELECT character_id, item_id, quantity FROM Character_Items;
+SELECT * FROM Character_Items;
 
---Dynamic read, get all players in a specific session
 SELECT player_id FROM Players
-WHERE session_id = :session_id_from_the_dropdown_Input;
+WHERE session_id = 402
+ORDER BY player_id DES;
 
--- Delete an item
+-- Delete data, delete one thing from a table
+SET FOREIGN_KEY_CHECKS = 0;
 DELETE FROM Items
-WHERE item_desc = :item_desc_selected_from_the_items_page;
+WHERE item_desc = 'gun';
+SET FOREIGN_KEY_CHECKS = 1; -- reset foreign key checks after deletion
 
--- Update a session
+-- Update data
 UPDATE Sessions
-SET num_players = :num_players
-WHERE session_id = :session_id_from_the_dropdown_Input;
+SET num_players = 2
+WHERE session_id = 403;

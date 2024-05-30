@@ -4,7 +4,7 @@
 	<thead>
     {{!-- For just the first row, we print each key of the row object as a header cell so we know what each column menas when the page renders --}}
 		<tr>
-      <th><a href="#add-entity-form">New</a></th>
+      <th><a href="">New</a></th>
       <th></th>
 			{{#each data.[0]}}
 			<th>
@@ -17,9 +17,9 @@
 	<tbody>
     {{!-- For each row, print the keys and attributes --}}
 		{{#each data}}
-		<tr data-value={{this.character_id}}>
+		<tr>
       <td class="edit-link">Edit</td>
-      <td class="delete-link" onclick="deleteCharacter({{this.character_id}})">Delete</td>
+      <td class="delete-link">Delete</td>
 			<td>{{this.character_id}}</td>
 			<td>{{this.player_id}}</td>
 			<td>{{this.name}}</td>
@@ -33,11 +33,6 @@
     {{/each}}
 	</tbody>
 </table>
-<div class="form-btn-container">
-  <button class="toggle" onclick="toggleAddForm()">Show/Hide Add Form</button>
-  <button class="toggle" onclick="toggleUpdateForm()">Show/Hide Update Form</button>
-  <button class="toggle" onclick="toggleSearchForm()">Show/Hide Search Form</button>
-</div>
 <div class="form-container">
   {{!-- Form to add a record to the table --}}
   <form class="add-entity-form" id="add-character-form">
@@ -79,31 +74,24 @@
   <form class="update-entity-form" id="update-character-form">
     <fieldset>
       <legend>Update a Character</legend>
-      <label for="input-character-id">Character ID (Character Name): </label>
-      <select name="input-player-id" id="mySelect">
-        <option value="">Select a Character</option>
-        {{#each data}}
-          <option value="{{this.character_id}}">#{{this.character_id}} ({{this.name}})</option>
-        {{/each}}
-      </select>
-      
-      <select name="update-player-id" id="update-player-id">
+      <label for="input-player-id">Player ID: </label>
+      <select name="input-player-id" id="input-player-id">
         <option value="">Select a Player</option>
         {{#each players}}
-        <option value="{{this.player_id}}">#{{this.player_id}} ({{this.username}})</option>
+        <option value="{{this.player_id}}">{{this.player_id}} ({{this.username}})</option>
         {{/each}}
       </select>
       
       <label for="input-character-name">Character Name: </label>
-      <input type="text" name="update-character-name" id="update-character-name"/>
+      <input type="text" name="input-character-name" id="input-character-name"/>
       
-      <label for="update-character-level">Level: </label>
-      <input type="number" name="update-character-level" id="update-character-level" min="0" max="100"/>
+      <label for="input-character-level">Level: </label>
+      <input type="number" name="input-character-level" id="input-character-level" min="0" max="100"/>
       
-      <label for="update-character-experience">Experience Points: </label>
-      <input type="number" name="update-character-experience" id="update-character-experience" min="0" max="100000"/>
+      <label for="input-character-experience">Experience Points: </label>
+      <input type="number" name="input-character-experience" id="input-character-experience" min="0" max="100000"/>
       
-      <label for="update-character-agility">Agility Points: </label>
+      <label for="input-character-agility">Agility Points: </label>
       <input type="number" name="input-character-agility" id="input-character-agility" min="0" max="100"/>
       
       <label for="input-character-strength">Strengh Points: </label>
@@ -118,18 +106,12 @@
       <input type="submit"/> 
     </fieldset>
   </form>
-  <form class="search-form" id="search-character-form">
+  <form class="delete-entity-form" id="delete-character-form">
     <fieldset>
-      <label for="input-name">Search by Character Name: </label>
-      <input type="text" name="name" id="input-name-html-search">
-
-      <input type="submit">
-      <a href="/"><button>Reset</button></a>
     </fieldset>
   </form>
 </div>
 <script src="./js/add_character.js"></script>
 <script src="./js/update_character.js"></script>
 <script src="./js/delete_character.js"></script>
-<script src="./js/buttons.js"></script>
 
