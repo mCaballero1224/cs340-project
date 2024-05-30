@@ -54,7 +54,12 @@ updateCharacterForm.addEventListener("submit", function(e) {
   xhttp.onreadystatechange = () => {
     if (xhttp.readyState == 4 && xhttp.status == 200) {
       // add the new data to the table
-      updateRow(xhttp.response, full
+      updateRow(xhttp.response, characterIdValue); 
     }
   };
 });
+
+
+function updateRow(characterIdvalue) {
+  console.log('To be implemented');
+}
