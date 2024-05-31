@@ -26,7 +26,7 @@ body {
 }
 
 header {
-  padding: 2%;
+  padding-top: 2%;
 }
 
 footer {
@@ -42,8 +42,7 @@ a {
 }
 
 p {
-  padding: 2%;
-  margin: 2%;
+  padding: 1%;
 }
 
 a:hover {
@@ -125,7 +124,7 @@ input[type="submit"] {
 
 nav {
   padding: 0;
-  margin: 2% 0;
+  margin: 0 0 2% 0;
   height: 30px;
 }
 
