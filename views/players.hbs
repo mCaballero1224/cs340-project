@@ -6,11 +6,9 @@
 		<tr>
 			<th><a href="#add-entity-form">New</a></th>
 			<th></th>
-			{{#each data.[0]}}
-			<th>
-				{{@key}}
-			</th>
-			{{/each}}	
+			<th>PlayerID</th>
+			<th>Username</th>
+			<th>SessionID</th>
 		</tr>
 	</thead>
   {{!-- Body section --}}
@@ -18,7 +16,7 @@
     {{!-- For each row, print the keys and attributes --}}
 		{{#each data}}
 		<tr>
-			<td class="edit-link">Edit</a></td>
+			<td class="edit-link" onclick="setupEditPlayer({{this.player_id}})">Edit</a></td>
 			<td class="delete-link" onclick="deletePlayer({{this.player_id}})">Delete</td>
 			<td>{{this.player_id}}</td>
 			<td>{{this.username}}</td>
@@ -59,7 +57,7 @@
       <select name="input-player-id" id="input-player-id">
         <option value="">Select a Player</option>
         {{#each data}}
-        <option
+        <option value="{{this.player_id}}">#{{this.player_id}} ({{this.username}})</option>
         {{/each}}
       </select>
 
