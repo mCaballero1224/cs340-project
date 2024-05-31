@@ -49,9 +49,21 @@ app.get('/characters', function(req, res) {
 });
 
 app.get('/players', function(req, res) {
-	let query1 = "SELECT * FROM Players;";
+  let query1;
+  let query2;
+  let sessions;
+	query1 = "SELECT * FROM Sessions;";
+  if (req.query.username == undefined) {
+     query2 = `SELECT * FROM Players;`;
+  }
+  else {
+    query2 = `SELECT * FROM Players WHERE username LIKE "${req.query.username}%";`;
+  }
   db.pool.query(query1, function(error, rows, fields) {
-	res.render('players', {pageTitle: 'PlayersDB', flavorText: 'Information about our users', data: rows});
+    sessions = rows;
+    db.pool.query(query2, function(error, rows, fields) {
+      res.render('players', {pageTitle: 'PlayersDB', flavorText: 'Information about our users', data: rows, sessions: sessions});
+    });
   });
 });
 
