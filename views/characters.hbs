@@ -50,7 +50,7 @@
       <select name="input-player-id" id="input-player-id">
         <option value="">Select a Player</option>
         {{#each players}}
-        <option value="{{this.player_id}}">{{this.player_id}} ({{this.username}})</option>
+        <option value="{{this.player_id}}">#{{this.player_id}} ({{this.username}})</option>
         {{/each}}
       </select>
       
@@ -123,7 +123,7 @@
   </form>
   <form class="search-form" id="search-character-form">
     <fieldset>
-      <label for="input-name">Search by Character Name: </label>
+      <label for="name">Search by Character Name: </label>
       <input type="text" name="name" id="input-name-html-search">
 
       <input type="submit">
@@ -131,8 +131,8 @@
     </fieldset>
   </form>
 </div>
-<script src="./js/add_character.js"></script>
-<script src="./js/update_character.js"></script>
-<script src="./js/delete_character.js"></script>
+<script src="./js/characters/add_character.js"></script>
+<script src="./js/characters/update_character.js"></script>
+<script src="./js/characters/delete_character.js"></script>
 <script src="./js/buttons.js"></script>
 
