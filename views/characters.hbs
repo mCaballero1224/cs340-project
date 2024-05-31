@@ -6,11 +6,15 @@
 		<tr>
       <th><a href="#add-entity-form">New</a></th>
       <th></th>
-			{{#each data.[0]}}
-			<th>
-				{{@key}}
-			</th>
-			{{/each}}	
+			<th>CharacterID</th>
+      <th>PlayerID</th>
+      <th>Name</th>
+      <th>Level</th>
+      <th>Experience</th>
+      <th>Agility</th>
+      <th>Strength</th>
+      <th>Magic</th>
+      <th>Health</th>
 		</tr>
 	</thead>
   {{!-- Body section --}}
@@ -128,8 +132,8 @@
     </fieldset>
   </form>
 </div>
-<script src="./js/add_character.js"></script>
-<script src="./js/update_character.js"></script>
-<script src="./js/delete_character.js"></script>
+<script src="./js/characters/add_character.js"></script>
+<script src="./js/characters/update_character.js"></script>
+<script src="./js/characters/delete_character.js"></script>
 <script src="./js/buttons.js"></script>
 

@@ -185,7 +185,7 @@ app.delete("/delete-character", function(req, res, next) {
         if (error) {
           console.log(error);
         } 
-      }
+      });
     }
   });
 });
