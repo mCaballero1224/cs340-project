@@ -37,15 +37,12 @@ app.get('/characters', function(req, res) {
     query2 = `SELECT * FROM Characters;`;
   }
   else {
-    console.log(req.query.name);
     query2 = `SELECT * FROM Characters WHERE name LIKE "${req.query.name}%";`;
   }
   db.pool.query(query1, function(error, rows, fields) {
     let players = rows;
-    console.log(players);
     db.pool.query(query2, function(error, rows, fields) {
       let characters = rows;
-      console.log(rows);
       res.render('characters', {pageTitle: 'CharactersDB', flavorText: 'Information about characters created by our users', data: characters, players: players});
     });
   });
