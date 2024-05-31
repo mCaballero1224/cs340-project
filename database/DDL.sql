@@ -13,7 +13,8 @@ CREATE TABLE Sessions(
 -- data for Sessions
 INSERT INTO Sessions VALUES
 (401, '2024-05-03 23:18:00', 3, 'Tree Top'),
-(402, '2024-05-01 16:49:00', 2, 'Bunker');
+(402, '2024-05-01 16:49:00', 2, 'Bunker')
+(403, '2024-05-12 02:23:00', 0, 'Moon');
 
 DROP TABLE IF EXISTS Players;
 -- table for Players: records details of users
