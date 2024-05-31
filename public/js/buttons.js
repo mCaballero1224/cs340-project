@@ -1,7 +1,10 @@
-const addForm = document.getElementById('add-character-form');
-const updateForm = document.getElementById('update-character-form');
-const deleteForm = document.getElementById('delete-character-form');
+const addForm = document.querySelector('.add-entity-form');
+const updateForm = document.querySelector('.update-entity-form');
 const searchForm = document.querySelector('.search-form');
+
+console.log(addForm);
+console.log(updateForm);
+console.log(searchForm);
 
 const showAddForm = () => {
   list = addForm.classList;
