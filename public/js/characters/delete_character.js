@@ -22,7 +22,6 @@ function deleteCharacter(characterId) {
 function deleteRow(characterId) {
   let table = document.querySelector("table tbody");
   for (let i = 0, row; row = table.rows[i]; i++) {
-    console.log(table.rows);
     if (table.rows[i].getAttribute("data-value") == characterId) {
       console.log(table.rows[i].getAttribute("data-value"));
       table.deleteRow(i);
