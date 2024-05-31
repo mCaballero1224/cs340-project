@@ -22,7 +22,7 @@
     {{!-- For each row, print the keys and attributes --}}
 		{{#each data}}
 		<tr data-value={{this.character_id}}>
-      <td class="edit-link">Edit</td>
+      <td class="edit-link" onclick="setupCharacterEdit({{this.character_id}})">Edit</td>
       <td class="delete-link" onclick="deleteCharacter({{this.character_id}})">Delete</td>
 			<td>{{this.character_id}}</td>
 			<td>{{this.player_id}}</td>
@@ -83,14 +83,15 @@
   <form class="update-entity-form" id="update-character-form">
     <fieldset>
       <legend>Update a Character</legend>
-      <label for="input-character-id">Character ID (Character Name): </label>
-      <select name="input-player-id" id="mySelect">
+      <label for="update-character-id">Character ID (Character Name): </label>
+      <select name="update-player-id" id="mySelect">
         <option value="">Select a Character</option>
         {{#each data}}
           <option value="{{this.character_id}}">#{{this.character_id}} ({{this.name}})</option>
         {{/each}}
       </select>
       
+      <label for="update-player-id">Player ID (Username): </label>
       <select name="update-player-id" id="update-player-id">
         <option value="">Select a Player</option>
         {{#each players}}
@@ -98,7 +99,7 @@
         {{/each}}
       </select>
       
-      <label for="input-character-name">Character Name: </label>
+      <label for="update-character-name">Character Name: </label>
       <input type="text" name="update-character-name" id="update-character-name"/>
       
       <label for="update-character-level">Level: </label>
@@ -108,23 +109,24 @@
       <input type="number" name="update-character-experience" id="update-character-experience" min="0" max="100000"/>
       
       <label for="update-character-agility">Agility Points: </label>
-      <input type="number" name="input-character-agility" id="input-character-agility" min="0" max="100"/>
+      <input type="number" name="update-character-agility" id="update-character-agility" min="0" max="100"/>
       
-      <label for="input-character-strength">Strengh Points: </label>
-      <input type="number" name="input-character-strength" id="input-character-strength" min="0" max="100"/>
+      <label for="update-character-strength">Strengh Points: </label>
+      <input type="number" name="update-character-strength" id="update-character-strength" min="0" max="100"/>
       
-      <label for="input-character-magic">Magic Points: </label>
-      <input type="number" name="input-character-magic" id="input-character-magic" min="0" max="100"/>
+      <label for="update-character-magic">Magic Points: </label>
+      <input type="number" name="update-character-magic" id="update-character-magic" min="0" max="100"/>
       
-      <label for="input-character-health">Health Points: </label>
-      <input type="number" name="input-character-health" id="input-character-health" min="0" max="100"/>
+      <label for="update-character-health">Health Points: </label>
+      <input type="number" name="update-character-health" id="update-character-health" min="0" max="100"/>
 
       <input type="submit"/> 
     </fieldset>
   </form>
   <form class="search-form" id="search-character-form">
     <fieldset>
-      <label for="input-name">Search by Character Name: </label>
+      <legend>Serach by Character Name</legend>
+      <label for="input-name">Name: </label>
       <input type="text" name="name" id="input-name-html-search">
 
       <input type="submit">
