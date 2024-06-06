@@ -261,6 +261,40 @@ app.get('/items', function(req, res) {
   });
 });
 
+app.post('/add-item', function(req, res, next) {
+  let data = req.body;
+  let selectQuery = `SELECT * FROM Items`;
+
+  let item_desc = data.item_desc;
+  let item_type = data.item_type;
+  let item_stat = data.item_stat;
+
+  if (isNaN(item_stat)) {
+    item_stat = 'NULL';
+  }
+
+  let addItemQuery = `INSERT INTO Items (item_desc, item_type, item_stat) VALUES ("${item_desc}", "${item_type}"}, ${item_stat})`;
+
+  db.pool.query(addItemQuery, function(error, rows, fields) {
+    if (error) {
+      console.log(error);
+      res.sendStatus(400);
+    }
+    else {
+      db.pool.query(selectQuery, function(error, rows, fields) {
+        if (error) {
+          console.log(error);
+          res.sendStatus(400);
+        }
+        else {
+          res.send(rows);
+        }      
+      });
+    }
+  });
+
+});
+
 // Inventory Routes
 app.get('/character_items', function(req, res) {
   let query1 = "SELECT * FROM  Character_Items;";

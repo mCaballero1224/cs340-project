@@ -4,7 +4,7 @@
 	<thead>
     {{!-- For just the first row, we print each key of the row object as a header cell so we know what each column menas when the page renders --}}
 		<tr>
-			<th><a href="">New</a></th>
+			<th class="new-link" onclick="handleNewBtnClick()">New</th>
 			<th></th>
 			<th>ItemID</th>
 			<th>Description</th>
@@ -27,4 +27,11 @@
     {{/each}}
 	</tbody>
 </table>
+<div class="form-btn-container">
+  <button class="toggle" onclick"toggleAddForm()">Show/Hide Add Form</button>
+  <button class="toggle" onclick"toggleUpdateForm()">Show/Hide Update Form</button>
+  <button class="toggle" onclick"toggleDeleteForm()">Show/Hide Delete Form</button>
+</div>
+<div class="form-container">
+</div>
 
