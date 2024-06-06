@@ -15,16 +15,17 @@ app.set('view engine', '.hbs'); // tell express to use the handlebars engine whe
 
 PORT = process.env.PORT || 2077; // because cyberpunk
 
-/* Middleware */
+/* MIDDLEWARE */
 app.use(express.static(path.join(__dirname, '/public')));
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
-/* Routes */
+/* ROUTES */
 app.get('/', function(req, res) {
 	res.render('index', {pageTitle: 'FutureGadgetDB', flavorText: 'Database project for CS340', headerImage: '/assets/android-chrome-192x192.png'});
 });
 
+// Character Routes
 app.get('/characters', function(req, res) {
   let query1;
   let query2;
@@ -46,50 +47,6 @@ app.get('/characters', function(req, res) {
       res.render('characters', {pageTitle: 'CharactersDB', flavorText: 'Information about characters created by our users', headerImage: '/images/noun-character.png', data: characters, players: players});
     });
   });
-});
-
-app.get('/players', function(req, res) {
-  let query1;
-  let query2;
-  let sessions;
-	query1 = "SELECT * FROM Sessions;";
-  if (req.query.username == undefined) {
-     query2 = `SELECT * FROM Players;`;
-  }
-  else {
-    query2 = `SELECT * FROM Players WHERE username LIKE "${req.query.username}%";`;
-  }
-  db.pool.query(query1, function(error, rows, fields) {
-    sessions = rows;
-    db.pool.query(query2, function(error, rows, fields) {
-      res.render('players', {pageTitle: 'PlayersDB', flavorText: 'Information about our users', headerImage: '/images/noun-team.png', data: rows, sessions: sessions});
-    });
-  });
-});
-
-app.get('/sessions', function(req, res) {
-	let query1 = "SELECT * FROM Sessions;";
-  db.pool.query(query1, function(error, rows, fields) {
-    res.render('sessions', {pageTitle: 'SessionsDB', flavorText: 'Information about currently running game sessions', headerImage: '/images/noun-server.png', data: rows});
-  });
-});
-
-app.get('/items', function(req, res) {
-	let query1 = "SELECT * FROM Items;";
-  db.pool.query(query1, function(error, rows, fields) {
-    res.render('items', {pageTitle: 'ItemsDB', flavorText: 'Information about available in-game items', headerImage: '/images/noun-item.png', data: rows});
-  });
-});
-
-app.get('/character_items', function(req, res) {
-  let query1 = "SELECT * FROM  Character_Items;";
-  db.pool.query(query1, function(error, rows, fields) {
-    res.render('character_items', {pageTitle: 'CharacterItemsDB', flavorText: 'Intersection table describing what characters have what items.', headerImage: '/images/noun-inventory.png', data: rows});
-  });
-});
-
-app.get('/citations', function(req, res) {
-	res.render('citations', {pageTitle: 'Citations', flavorText: 'Because plagiarism bad', headerImage: '/images/noun-scroll.png'});
 });
 
 app.post('/add-character', function(req, res) {
@@ -233,6 +190,56 @@ app.put('/put-character', function(req, res, next) {
   });
 });
 
+// Player Routes 
+app.get('/players', function(req, res) {
+  let query1;
+  let query2;
+  let sessions;
+	query1 = "SELECT * FROM Sessions;";
+  if (req.query.username == undefined) {
+     query2 = `SELECT * FROM Players;`;
+  }
+  else {
+    query2 = `SELECT * FROM Players WHERE username LIKE "${req.query.username}%";`;
+  }
+  db.pool.query(query1, function(error, rows, fields) {
+    sessions = rows;
+    db.pool.query(query2, function(error, rows, fields) {
+      res.render('players', {pageTitle: 'PlayersDB', flavorText: 'Information about our users', headerImage: '/images/noun-team.png', data: rows, sessions: sessions});
+    });
+  });
+});
+
+
+// Session Routes
+app.get('/sessions', function(req, res) {
+	let query1 = "SELECT * FROM Sessions;";
+  db.pool.query(query1, function(error, rows, fields) {
+    res.render('sessions', {pageTitle: 'SessionsDB', flavorText: 'Information about currently running game sessions', headerImage: '/images/noun-server.png', data: rows});
+  });
+});
+
+
+// Item Routes
+app.get('/items', function(req, res) {
+	let query1 = "SELECT * FROM Items;";
+  db.pool.query(query1, function(error, rows, fields) {
+    res.render('items', {pageTitle: 'ItemsDB', flavorText: 'Information about available in-game items', headerImage: '/images/noun-item.png', data: rows});
+  });
+});
+
+// Inventory Routes
+app.get('/character_items', function(req, res) {
+  let query1 = "SELECT * FROM  Character_Items;";
+  db.pool.query(query1, function(error, rows, fields) {
+    res.render('character_items', {pageTitle: 'CharacterItemsDB', flavorText: 'Intersection table describing what characters have what items.', headerImage: '/images/noun-inventory.png', data: rows});
+  });
+});
+
+// Citations Route
+app.get('/citations', function(req, res) {
+	res.render('citations', {pageTitle: 'Citations', flavorText: 'Because plagiarism bad', headerImage: '/images/noun-scroll.png'});
+});
 
 
 
