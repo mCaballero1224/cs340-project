@@ -210,6 +210,39 @@ app.get('/players', function(req, res) {
   });
 });
 
+app.post('/add-player', function(req, res, next) {
+ let data = req.body; 
+
+  let session_id = data.session_id;
+  let username = data.username;
+
+
+  if (isNaN(session_id)) {
+    session_id = 'NULL';
+  }
+
+  let addPlayerQuery = `INSERT INTO Players (username, session_id) VALUES ("${username}", ${session_id})`;
+  let selectQuery = `SELECT * FROM Players`;
+
+  db.pool.query(addPlayerQuery, function(error, rows, fields) {
+    if (error) {
+      console.log(error);
+      res.sendStatus(400);
+    } 
+    else {
+      db.pool.query(selectQuery, function(error, rows, fields) {
+        if (error) {
+          console.log(error);
+          res.sendStatus(400);
+        } 
+        else {
+          res.send(rows);
+        }
+      });
+    }
+  });
+});
+
 
 // Session Routes
 app.get('/sessions', function(req, res) {

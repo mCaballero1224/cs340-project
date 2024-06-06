@@ -15,6 +15,10 @@ addCharacterForm.addEventListener("submit", function(e) {
   let sessionIdValue = inputSessionId.value;
   let usernameValue = inputUsername.value;
 
+  if (isNaN(sessionIdValue)) {
+    sessionIdValue = 'NULL';
+  }
+
   // put data into an object to prep for sendoff
   let data = {
     session_id: sessionIdValue,

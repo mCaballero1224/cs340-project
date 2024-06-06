@@ -4,7 +4,7 @@
 	<thead>
     {{!-- For just the first row, we print each key of the row object as a header cell so we know what each column menas when the page renders --}}
 		<tr>
-			<th><a href="#add-entity-form">New</a></th>
+			<th class="new-link" onclick="handleNewBtnClick()">New</th>
 			<th></th>
 			<th>Player ID</th>
 			<th>Username</th>
@@ -35,9 +35,10 @@
     <fieldset>
       <legend>Add a Player</legend>
 
-      <label for="input-session-id">SessionID (optional): </label>
+      <label for="input-session-id">SessionID: </label>
       <select name="input-session-id" id="input-session-id">
         <option value="">Select a Session</option>
+        <option value="none">No Session</option>
         {{#each sessions}}
           <option value="{{this.session_id}}">#{{this.session_id}} ({{this.map_location}})</option>
         {{/each}}
