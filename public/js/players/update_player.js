@@ -17,7 +17,7 @@ updateCharacterForm.addEventListener("submit", function(e) {
   let inputMagic = document.getElementById("update-character-magic");
   let inputHealth = document.getElementById("update-character-health");
 
-  // get teh values from the form fields
+  // get the values from the form fields
   let characterIdValue = inputCharacterId.value;
   let playerIdValue = inputPlayerId.value;
   let nameValue = inputName.value;
@@ -58,6 +58,28 @@ updateCharacterForm.addEventListener("submit", function(e) {
     }
   };
 });
+
+function setupPlayerEdit(playerId) {
+  showUpdateForm();
+  // get the form fields we need to pull data from
+  let inputCharacterId = document.getElementById("mySelect");
+  let inputPlayerId = document.getElementById("update-player-id");
+  let inputName = document.getElementById("update-character-name");
+  let inputLevel = document.getElementById("update-character-level");
+  let inputExperience = document.getElementById("update-character-experience");
+  let inputAgility = document.getElementById("update-character-agility");
+  let inputStrength = document.getElementById("update-character-strength");
+  let inputMagic = document.getElementById("update-character-magic");
+  let inputHealth = document.getElementById("update-character-health");
+
+  let table = document.querySelector("table tbody");
+  for (let i = 0, row; row = table.rows[i]; i++) {
+    if (table.rows[i].getAttribute("data-value") == playerId) {
+      inputPlayerId.value = row.cells[2].innerText;
+      
+    }
+  }
+}
 
 
 function updateRow(characterIdvalue) {
