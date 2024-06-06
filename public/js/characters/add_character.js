@@ -93,7 +93,6 @@ addRowToTable = (data) => {
   let magicCell = document.createElement("TD");
   let healthCell = document.createElement("TD");
 
-  console.log(newRow.player_id);
   // fill cells with correct data
   editCell.innerHTML = `Edit`;
   editCell.classList.add("edit-link");
