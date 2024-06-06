@@ -29,6 +29,10 @@ header {
   padding: 2%;
 }
 
+header img {
+  height: 128px;
+}
+
 footer {
   text-align: center;
 }
@@ -54,7 +58,7 @@ table {
   margin: 0 auto;
 }
 
-.edit-link, .delete-link {
+.new-link, .edit-link, .delete-link {
   text-decoration: underline;
   color: var(--steel-blue);
   cursor: pointer;
@@ -91,6 +95,7 @@ input[type="submit"] {
   font-weight: bold;
   border-radius: 5px;
   border: 1px solid var(--gunmetal);
+  cursor: pointer;
 }
 
 .form-btn-container {
