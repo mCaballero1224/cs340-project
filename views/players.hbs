@@ -6,9 +6,9 @@
 		<tr>
 			<th><a href="#add-entity-form">New</a></th>
 			<th></th>
-			<th>PlayerID</th>
+			<th>Player ID</th>
 			<th>Username</th>
-			<th>SessionID</th>
+			<th>Session ID</th>
 		</tr>
 	</thead>
   {{!-- Body section --}}
@@ -31,7 +31,7 @@
   <button class="toggle" onclick="toggleSearchForm()">Show/Hide Search Form</button>
 </div>
 <div class="form-container">
-  <form class="add-entity-form" id="add-player-form">
+  <form class="add-entity-form hidden" id="add-player-form">
     <fieldset>
       <legend>Add a Player</legend>
 
@@ -49,7 +49,7 @@
       <input type="submit"/>
     </fieldset>
   </form>
-  <form class="update-entity-form" id="update-player-form">
+  <form class="update-entity-form hidden" id="update-player-form">
     <fieldset>
       <legend>Update a Player</legend>
       
@@ -61,11 +61,20 @@
         {{/each}}
       </select>
 
-      <label for="input-player-username">Username: </label>
-      <input type="text" name="input-player-username" id="input-player-username"/>
+      <label for="update-session-id">Session ID: </label>
+      <select name="update-session-id" id="update-session-id">
+        <option value="">Select a Session</option>
+        <option value="none">No Session</option>
+        {{#each sessions}}
+        <option value="{{this.session_id}}">#{{session_id}} ({{this.map_location}})</option>
+        {{/each}}
+      </select>
+
+      <label for="update-player-username">Username: </label>
+      <input type="text" name="update-player-username" id="update-player-username"/>
     </fieldset>
   </form>
-  <form class="search-form" id="serach-player-form">
+  <form class="search-form hidden" id="serach-player-form">
     <fieldset>
       <legend>Search by Username</legend>
       <label for="username">Username: </label>

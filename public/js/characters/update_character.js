@@ -28,7 +28,7 @@ updateCharacterForm.addEventListener("submit", function(e) {
   let magicValue = inputMagic.value;
   let healthValue = inputHealth.value;
 
-  if (isNaN(playerId)) {
+  if (isNaN(playerIdValue)) {
     return;
   }
 
@@ -47,7 +47,7 @@ updateCharacterForm.addEventListener("submit", function(e) {
 
   // setup ajax request
   var xhttp = new XMLHttpRequest();
-  xhttp.open("PUT", "put-character", true);
+  xhttp.open("PUT", "/put-character", true);
   xhttp.setRequestHeader("Content-type", "application/json");
 
   // tell ajax request how to resolve
@@ -56,7 +56,14 @@ updateCharacterForm.addEventListener("submit", function(e) {
       // add the new data to the table
       updateRow(xhttp.response, characterIdValue); 
     }
+    else if (xhttp.readyState == 4&& xhttp.status != 200) {
+      console.log("There was an error with the input.");
+    }
   };
+
+  xhttp.send(JSON.stringify(data));
+  toggleUpdateForm();
+  alert(`Character #${characterIdValue} has been updated.`);
 });
 
 function setupCharacterEdit(characterId) {
@@ -87,9 +94,37 @@ function setupCharacterEdit(characterId) {
      inputHealth.value = row.cells[10].innerText;
    }
   }
+
+  updateCharacterForm.scrollIntoView();
 };
 
 
-function updateRow(characterIdvalue) {
-  console.log('To be implemented');
+function updateRow(data, characterId) {
+  let parsedData = JSON.parse(data);
+
+  let table = document.querySelector('table tbody');
+  
+  for (let i = 0, row; row = table.rows[i]; i++) {
+    if (table.rows[i].getAttribute("data-value") == characterId) {
+      let updateRowIndex = table.getElementsByTagName("tr")[i];
+      let playerIdCell = updateRowIndex.getElementsByTagName("td")[3]
+      let nameCell = updateRowIndex.getElementsByTagName("td")[4]
+      let levelCell = updateRowIndex.getElementsByTagName("td")[5]
+      let experienceCell = updateRowIndex.getElementsByTagName("td")[6]
+      let agilityCell = updateRowIndex.getElementsByTagName("td")[7]
+      let strengthCell = updateRowIndex.getElementsByTagName("td")[8]
+      let magicCell = updateRowIndex.getElementsByTagName("td")[9]
+      let healthCell = updateRowIndex.getElementsByTagName("td")[10]
+
+      playerIdCell.innerText = parsedData[0].player_id;
+      nameCell.innerText = parsedData[0].name;
+      levelCell.innerText = parsedData[0].level;
+      experienceCell.innerText = parsedData[0].experience;
+      agilityCell.innerText = parsedData[0].agility;
+      strengthCell.innerText = parsedData[0].strength;
+      magicCell.innerText = parsedData[0].magic;
+      healthCell.innerText = parsedData[0].health;
+
+    }
+  }
 }

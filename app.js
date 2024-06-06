@@ -22,7 +22,7 @@ app.use(express.urlencoded({extended: true}));
 
 /* Routes */
 app.get('/', function(req, res) {
-	res.render('index', {pageTitle: 'FutureGadgetDB', flavorText: 'Database project for CS340'});
+	res.render('index', {pageTitle: 'FutureGadgetDB', flavorText: 'Database project for CS340', headerImage: '/assets/android-chrome-192x192.png'});
 });
 
 app.get('/characters', function(req, res) {
@@ -43,7 +43,7 @@ app.get('/characters', function(req, res) {
     let players = rows;
     db.pool.query(query2, function(error, rows, fields) {
       let characters = rows;
-      res.render('characters', {pageTitle: 'CharactersDB', flavorText: 'Information about characters created by our users', data: characters, players: players});
+      res.render('characters', {pageTitle: 'CharactersDB', flavorText: 'Information about characters created by our users', headerImage: '/images/noun-character.png', data: characters, players: players});
     });
   });
 });
@@ -62,7 +62,7 @@ app.get('/players', function(req, res) {
   db.pool.query(query1, function(error, rows, fields) {
     sessions = rows;
     db.pool.query(query2, function(error, rows, fields) {
-      res.render('players', {pageTitle: 'PlayersDB', flavorText: 'Information about our users', data: rows, sessions: sessions});
+      res.render('players', {pageTitle: 'PlayersDB', flavorText: 'Information about our users', headerImage: '/images/noun-team.png', data: rows, sessions: sessions});
     });
   });
 });
@@ -70,26 +70,26 @@ app.get('/players', function(req, res) {
 app.get('/sessions', function(req, res) {
 	let query1 = "SELECT * FROM Sessions;";
   db.pool.query(query1, function(error, rows, fields) {
-    res.render('sessions', {pageTitle: 'SessionsDB', flavorText: 'Information about currently running game sessions', data: rows});
+    res.render('sessions', {pageTitle: 'SessionsDB', flavorText: 'Information about currently running game sessions', headerImage: '/images/noun-server.png', data: rows});
   });
 });
 
 app.get('/items', function(req, res) {
 	let query1 = "SELECT * FROM Items;";
   db.pool.query(query1, function(error, rows, fields) {
-    res.render('items', {pageTitle: 'ItemsDB', flavorText: 'Information about available in-game items', data: rows});
+    res.render('items', {pageTitle: 'ItemsDB', flavorText: 'Information about available in-game items', headerImage: '/images/noun-item.png', data: rows});
   });
 });
 
 app.get('/character_items', function(req, res) {
   let query1 = "SELECT * FROM  Character_Items;";
   db.pool.query(query1, function(error, rows, fields) {
-    res.render('character_items', {pageTitle: 'CharacterItemsDB', flavorText: 'Intersection table describing what characters have what items.', data: rows});
+    res.render('character_items', {pageTitle: 'CharacterItemsDB', flavorText: 'Intersection table describing what characters have what items.', headerImage: '/images/noun-inventory.png', data: rows});
   });
 });
 
 app.get('/citations', function(req, res) {
-	res.render('citations', {pageTitle: 'Citations', flavorText: 'Because plagiarism bad'});
+	res.render('citations', {pageTitle: 'Citations', flavorText: 'Because plagiarism bad', headerImage: '/images/noun-scroll.png'});
 });
 
 app.post('/add-character', function(req, res) {
@@ -193,6 +193,41 @@ app.delete("/delete-character", function(req, res, next) {
             }
           });
         }
+      });
+    }
+  });
+});
+
+app.put('/put-character', function(req, res, next) {
+  let data = req.body;
+
+  let characterId = parseInt(data.characterId);
+  let playerId = parseInt(data.playerId);
+  let name = data.name;
+  let level = parseInt(data.level);
+  let experience = parseInt(data.experience);
+  let agility = parseInt(data.agility);
+  let strength = parseInt(data.strength);
+  let magic = parseInt(data.magic);
+  let health = parseInt(data.health);
+
+  let queryUpdateCharacter = `UPDATE Characters SET player_id = ?, name = ?, level = ?, experience = ?, agility = ?, strength = ?, magic = ?, health = ? WHERE character_id = ?`;
+  let selectCharacter = `SELECT * FROM Characters WHERE character_id = ?`;
+
+  db.pool.query(queryUpdateCharacter, [playerId, name, level, experience, agility, strength, magic, health, characterId], function(error, rows, fields) {
+    if (error) {
+      console.log(error);
+      res.sendStatus(400);
+    } 
+    else {
+      db.pool.query(selectCharacter, [characterId], function(error, rows, fields) {
+       if (error) {
+        console.log(error);
+        res.sendStatus(400);
+       } 
+       else {
+        res.send(rows);
+       }
       });
     }
   });

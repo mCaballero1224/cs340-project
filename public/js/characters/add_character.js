@@ -126,4 +126,6 @@ addRowToTable = (data) => {
   row.appendChild(healthCell);
   // add the row to the table
   currentTable.appendChild(row);
+
+  toggleAddForm();
 };

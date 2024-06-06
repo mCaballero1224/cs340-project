@@ -2,15 +2,16 @@ const addForm = document.querySelector('.add-entity-form');
 const updateForm = document.querySelector('.update-entity-form');
 const searchForm = document.querySelector('.search-form');
 
-console.log(addForm);
-console.log(updateForm);
-console.log(searchForm);
-
 const showAddForm = () => {
   list = addForm.classList;
   if (list.contains('hidden')) {
     list.toggle('hidden');
   }
+};
+
+const handleNewBtnClick = () => {
+  showAddForm();
+  addForm.scrollIntoView();
 };
 
 const showUpdateForm = () => {

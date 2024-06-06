@@ -4,7 +4,7 @@
 	<thead>
     {{!-- For just the first row, we print each key of the row object as a header cell so we know what each column menas when the page renders --}}
 		<tr>
-      <th><a href="#add-entity-form">New</a></th>
+      <th class="new-link" onclick="handleNewBtnClick()">New</th>
       <th></th>
 			<th>CharacterID</th>
       <th>PlayerID</th>
@@ -37,6 +37,7 @@
     {{/each}}
 	</tbody>
 </table>
+<p class="text-center">See character inventories <a href="/character_items">here</a></p>
 <div class="form-btn-container">
   <button class="toggle" onclick="toggleAddForm()">Show/Hide Add Form</button>
   <button class="toggle" onclick="toggleUpdateForm()">Show/Hide Update Form</button>
@@ -44,7 +45,7 @@
 </div>
 <div class="form-container">
   {{!-- Form to add a record to the table --}}
-  <form class="add-entity-form" id="add-character-form">
+  <form class="add-entity-form hidden" id="add-character-form">
     <fieldset>
       <legend>Add a Character</legend>
       <label for="input-player-id">Player ID: </label>
@@ -80,7 +81,7 @@
     </fieldset>
   </form>
   {{!-- Form to update a record from the table --}}
-  <form class="update-entity-form" id="update-character-form">
+  <form class="update-entity-form hidden" id="update-character-form">
     <fieldset>
       <legend>Update a Character</legend>
       <label for="update-character-id">Character ID (Character Name): </label>
@@ -123,7 +124,7 @@
       <input type="submit"/> 
     </fieldset>
   </form>
-  <form class="search-form" id="search-character-form">
+  <form class="search-form hidden" id="search-character-form">
     <fieldset>
       <legend>Serach by Character Name</legend>
       <label for="input-name">Name: </label>
