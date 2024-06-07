@@ -273,7 +273,9 @@ app.post('/add-item', function(req, res, next) {
     item_stat = 'NULL';
   }
 
-  let addItemQuery = `INSERT INTO Items (item_desc, item_type, item_stat) VALUES ("${item_desc}", "${item_type}"}, ${item_stat})`;
+  console.log(data);
+
+  let addItemQuery = `INSERT INTO Items (item_desc, item_type, item_stat) VALUES ("${item_desc}", "${item_type}", ${item_stat})`;
 
   db.pool.query(addItemQuery, function(error, rows, fields) {
     if (error) {
@@ -287,6 +289,7 @@ app.post('/add-item', function(req, res, next) {
           res.sendStatus(400);
         }
         else {
+          console.log(rows);
           res.send(rows);
         }      
       });

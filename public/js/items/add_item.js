@@ -1,6 +1,6 @@
 const addItemForm = document.getElementById('add-item-form');
 
-addCharacterForm.addEventListener("submit", function(e) {
+addItemForm.addEventListener("submit", function(e) {
 	e.preventDefault();
 
   if (!confirm("Are you sure you want to submit this query?")) {
@@ -8,40 +8,25 @@ addCharacterForm.addEventListener("submit", function(e) {
   }
 
   // get form fields to pull data from
-	const inputPlayerId = document.querySelector("#add-character-form fieldset #input-player-id");
-	const inputName = document.querySelector("#add-character-form fieldset #input-character-name");
-	const inputLevel = document.querySelector("#add-character-form fieldset #input-character-level");
-	const inputExperiencePoints = document.querySelector("#add-character-form fieldset #input-character-experience");
-	const inputAgility = document.querySelector("#add-character-form fieldset #input-character-agility");
-	const inputStrength = document.querySelector("#add-character-form fieldset #input-character-strength");
-	const inputMagic = document.querySelector("#add-character-form fieldset #input-character-magic");
-	const inputHealth = document.querySelector("#add-character-form fieldset #input-character-health");
+	const inputItemDesc = document.querySelector("#add-item-form fieldset #add-item-desc");
+	const inputItemType = document.querySelector("#add-item-form fieldset #add-item-type");
+	const inputStat = document.querySelector("#add-item-form fieldset #add-item-stat");
 
   // pull data from form fields
-  let playerIdValue = inputPlayerId.value;
-  let nameValue = inputName.value;
-  let levelValue = inputLevel.value;
-  let experiencePointsValue = inputExperiencePoints.value;
-  let agilityValue  = inputAgility.value;
-  let strengthValue  = inputStrength.value;
-  let magicValue  = inputMagic.value;
-  let healthValue  = inputHealth.value;
+  let itemDescValue = inputItemDesc.value;
+  let itemTypeValue = inputItemType.value;
+  let statValue = inputStat.value || 'NULL' ;
 
   // put data into an object to prep for sendoff
   let data = {
-    player_id: playerIdValue,
-    name: nameValue,
-    level: levelValue,
-    experience: experiencePointsValue,
-    agility: agilityValue,
-    strength: strengthValue,
-    magic: magicValue,
-    health: healthValue
+    item_desc: itemDescValue,
+    item_type: itemTypeValue,
+    item_stat: statValue
   }
 
   // prep AJAX request
   var xhttp = new XMLHttpRequest();
-  xhttp.open("POST", "/add-character", true);
+  xhttp.open("POST", "/add-item", true);
   xhttp.setRequestHeader("Content-type", "application/json");
 
   // tell AJAX request how to resolve
@@ -50,14 +35,9 @@ addCharacterForm.addEventListener("submit", function(e) {
       // add new data to the table
       addRowToTable(xhttp.response);
       // clear the input fields for another transaction
-      playerIdValue = '';
-      nameValue = '';
-      levelValue = '';
-      experiencePointsValue = '';
-      agilityValue  = '';
-      strengthValue  = '';
-      magicValue  = '';
-      healthValue  = '';
+      itemDescValue = '';
+      itemTypeValue = '';
+      statValue  = '';
     } else if (xhttp.readyState == 4 && xhttp.status != 200) {
       console.log("There was an error with the input.");
     } 
@@ -78,20 +58,16 @@ addRowToTable = (data) => {
   // get reference to the new row from the database query (last object)
   let parsedData = JSON.parse(data);
   let newRow = parsedData[parsedData.length - 1];
+  console.log(newRow);
 
-  // create a row and 9 cells
+  // create a row and cells
   let row = document.createElement("TR");
   let editCell = document.createElement("TD");
   let deleteCell = document.createElement("TD");
-  let characterIdCell = document.createElement("TD");
-  let playerIdCell = document.createElement("TD");
-  let nameCell = document.createElement("TD");
-  let levelCell = document.createElement("TD");
-  let experiencePointsCell = document.createElement("TD");
-  let agilityCell = document.createElement("TD");
-  let strengthCell = document.createElement("TD");
-  let magicCell = document.createElement("TD");
-  let healthCell = document.createElement("TD");
+  let itemIdCell = document.createElement("TD");
+  let itemDescCell = document.createElement("TD");
+  let itemTypeCell = document.createElement("TD");
+  let itemStatCell = document.createElement("TD");
 
   // fill cells with correct data
   editCell.innerHTML = `Edit`;
@@ -101,28 +77,20 @@ addRowToTable = (data) => {
   deleteCell.onclick = function() {
     deleteCharacter(newRow.character_id);
   }
-  characterIdCell.innerText = newRow.character_id;
-  playerIdCell.innerText = newRow.player_id;
-  nameCell.innerText = newRow.name;
-  levelCell.innerText = newRow.level;
-  experiencePointsCell.innerText = newRow.experience;
-  agilityCell.innerText = newRow.agility;
-  strengthCell.innerText = newRow.strength;
-  magicCell.innerText = newRow.magic;
-  healthCell.innerText = newRow.health;
+
+  row.setAttribute("data-value", newRow.item_id);
+  itemIdCell.innerText = newRow.item_id;
+  itemDescCell.innerText = newRow.item_desc;
+  itemTypeCell.innerText = newRow.item_type;
+  itemStatCell.innerText = newRow.item_stat;
 
   // add the cells to the row
   row.appendChild(editCell);
   row.appendChild(deleteCell);
-  row.appendChild(characterIdCell);
-  row.appendChild(playerIdCell);
-  row.appendChild(nameCell);
-  row.appendChild(levelCell);
-  row.appendChild(experiencePointsCell);
-  row.appendChild(agilityCell);
-  row.appendChild(strengthCell);
-  row.appendChild(magicCell);
-  row.appendChild(healthCell);
+  row.appendChild(itemIdCell);
+  row.appendChild(itemDescCell);
+  row.appendChild(itemTypeCell);
+  row.appendChild(itemStatCell);
   // add the row to the table
   currentTable.appendChild(row);
 

@@ -16,7 +16,7 @@
 	<tbody>
     {{!-- For each row, print the keys and attributes --}}
 		{{#each data}}
-		<tr>
+		<tr data-value={{this.item_id}}>
 			<td><a href="">Edit</a></td>
 			<td><a href="">Delete</a></td>
 			<td>{{this.item_id}}</td>
@@ -28,10 +28,33 @@
 	</tbody>
 </table>
 <div class="form-btn-container">
-  <button class="toggle" onclick"toggleAddForm()">Show/Hide Add Form</button>
-  <button class="toggle" onclick"toggleUpdateForm()">Show/Hide Update Form</button>
-  <button class="toggle" onclick"toggleDeleteForm()">Show/Hide Delete Form</button>
+  <button class="toggle" onclick="toggleAddForm()">Show/Hide Add Form</button>
+  <button class="toggle" onclick="toggleUpdateForm()">Show/Hide Update Form</button>
+  <button class="toggle" onclick="toggleDeleteForm()">Show/Hide Delete Form</button>
 </div>
 <div class="form-container">
-</div>
+  <form class="add-entity-form hidden" id="add-item-form">
+    <fieldset>
+      <legend>Add an Item</legend>
 
+      <label for="add-item-desc">Item Description: </label>
+      <textarea name="add-item-desc" id="add-item-desc" placeholder="Describe the item here"></textarea>
+      
+      <label for="add-item-type">Item Type: </label>
+      <select name="add-item-type" id="add-item-type">
+        <option value="">Select an item type</option>
+        <option value="consumable">Consumable</option>
+        <option value="special">Special</option>
+        <option value="weapon">Weapon</option>
+        <option value="wearable">Wearable</option>
+      </select>
+
+      <label for="add-item-stat">Item Stat: </label>
+      <input id="add-item-stat" name="add-item-stat" type="number" min="0" max="100"/>
+
+      <input type="submit"/>
+    </fieldset>
+  </form>
+</div>
+<script src="./js/buttons.js"></script>
+<script src="./js/items/add_item.js"></script>
