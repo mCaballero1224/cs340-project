@@ -1,13 +1,13 @@
 # CS340 Portfolio Project - FutureGadgetDB
 
 ## Table of Contents
-[Technologies Used](##-technologies-used)
-[The Database](##-the-database)
-    [Sessions](###-sessions)
-        [Relationship with Players](####-relationship-with-players)
-    [Players](###-players)
-        [Relationship with Sessions](####-relationship-with-sessions)
-        [Relationship with Characters](####-relationship-with-characters)
+- [Technologies Used](##-technologies-used)
+- [The Database](##-the-database)
+    - [Sessions](###-sessions)
+        - [Relationship with Players](####-relationship-with-players)
+    - [Players](###-players)
+        - [Relationship with Sessions](####-relationship-with-sessions)
+        - [Relationship with Characters](####-relationship-with-characters)
 
 This project revolves around ocnnecting a normalized atabase to a web application. This project was
 done in collaboration with [Tiffany Gorseth](https://github.com/togrseth).
