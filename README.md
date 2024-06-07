@@ -21,7 +21,7 @@ done in collaboration with [Tiffany Gorseth](https://github.com/togrseth).
 - MariaDB to host the database
 
 ## The Database
-![Database Schema](https://github.com/mCaballero1224/cs-340-project/blob/main/public/assets/SchemaDB.svg)
+![Database Schema](https://github.com/mCaballero1224/cs340-project/blob/main/public/assets/SchemaDB.svg)
 
 ### Sessions
 Session entities represent game sessions running on a server. They contain attributes for the session's
