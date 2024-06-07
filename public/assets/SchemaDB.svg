@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg
+PUBLIC "-//W3C//DTD SVG 1.1//EN"
+       "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg viewBox="78 29 743 393" width="665px" height="364px" xmlns="http://www.w3.org/2000/svg" version="1.1">
+   <line x1="368" y1="94" x2="358" y2="94" style="stroke:#cb0;stroke-width:1;"/>
+   <line x1="363" y1="328" x2="373" y2="328" style="stroke:#cb0;stroke-width:1;"/>
+   <line x1="358" y1="94" x2="363" y2="328" style="stroke:#cb0;stroke-width:1;"/>
+   <line x1="360.5" y1="94" x2="364.03553390593" y2="97.535533905933" style="stroke:#cb0;stroke-width:2;"/>
+   <line x1="360.5" y1="94" x2="364.03553390593" y2="90.464466094067" style="stroke:#cb0;stroke-width:2;"/>
+   <line x1="368" y1="328" x2="364.46446609407" y2="331.53553390593" style="stroke:#cb0;stroke-width:2;"/>
+   <line x1="368" y1="328" x2="364.46446609407" y2="324.46446609407" style="stroke:#cb0;stroke-width:2;"/>
+   <line x1="606" y1="126" x2="596" y2="126" style="stroke:#0b0;stroke-width:1;"/>
+   <line x1="472" y1="74" x2="462" y2="74" style="stroke:#0b0;stroke-width:1;"/>
+   <line x1="596" y1="126" x2="472" y2="74" style="stroke:#0b0;stroke-width:1;"/>
+   <line x1="598.5" y1="126" x2="602.03553390593" y2="129.53553390593" style="stroke:#0b0;stroke-width:2;"/>
+   <line x1="598.5" y1="126" x2="602.03553390593" y2="122.46446609407" style="stroke:#0b0;stroke-width:2;"/>
+   <line x1="467" y1="74" x2="470.53553390593" y2="77.535533905933" style="stroke:#0b0;stroke-width:2;"/>
+   <line x1="467" y1="74" x2="470.53553390593" y2="70.464466094067" style="stroke:#0b0;stroke-width:2;"/>
+   <line x1="606" y1="146" x2="596" y2="146" style="stroke:#333;stroke-width:1;"/>
+   <line x1="599" y1="283" x2="609" y2="283" style="stroke:#333;stroke-width:1;"/>
+   <line x1="596" y1="146" x2="599" y2="283" style="stroke:#333;stroke-width:1;"/>
+   <line x1="598.5" y1="146" x2="602.03553390593" y2="149.53553390593" style="stroke:#333;stroke-width:2;"/>
+   <line x1="598.5" y1="146" x2="602.03553390593" y2="142.46446609407" style="stroke:#333;stroke-width:2;"/>
+   <line x1="604" y1="283" x2="600.46446609407" y2="286.53553390593" style="stroke:#333;stroke-width:2;"/>
+   <line x1="604" y1="283" x2="600.46446609407" y2="279.46446609407" style="stroke:#333;stroke-width:2;"/>
+   <line x1="373" y1="368" x2="363" y2="368" style="stroke:#cb0;stroke-width:1;"/>
+   <line x1="204" y1="186" x2="194" y2="186" style="stroke:#cb0;stroke-width:1;"/>
+   <line x1="363" y1="368" x2="204" y2="186" style="stroke:#cb0;stroke-width:1;"/>
+   <line x1="365.5" y1="368" x2="369.03553390593" y2="371.53553390593" style="stroke:#cb0;stroke-width:2;"/>
+   <line x1="365.5" y1="368" x2="369.03553390593" y2="364.46446609407" style="stroke:#cb0;stroke-width:2;"/>
+   <line x1="199" y1="186" x2="202.53553390593" y2="189.53553390593" style="stroke:#cb0;stroke-width:2;"/>
+   <line x1="199" y1="186" x2="202.53553390593" y2="182.46446609407" style="stroke:#cb0;stroke-width:2;"/>
+   <rect width="94" height="20" x="368" y="44" style="fill:#007;stroke:black;"/>
+   <text width="94" height="20" x="373" y="58" style="fill:#fff;" font-family="Arial" font-size="16px"> Characters</text>
+   <rect width="94" height="20" x="368" y="64" style="fill:#aea;stroke:black;"/>
+   <text width="94" height="20" x="373" y="78" style="fill:black;" font-family="Arial" font-size="16px">character_id</text>
+   <rect width="94" height="20" x="368" y="84" style="fill:none;stroke:black;"/>
+   <text width="94" height="20" x="373" y="98" style="fill:black;" font-family="Arial" font-size="16px">player_id</text>
+   <rect width="94" height="20" x="368" y="104" style="fill:none;stroke:black;"/>
+   <text width="94" height="20" x="373" y="118" style="fill:black;" font-family="Arial" font-size="16px">name</text>
+   <rect width="94" height="20" x="368" y="124" style="fill:none;stroke:black;"/>
+   <text width="94" height="20" x="373" y="138" style="fill:black;" font-family="Arial" font-size="16px">level</text>
+   <rect width="94" height="20" x="368" y="144" style="fill:none;stroke:black;"/>
+   <text width="94" height="20" x="373" y="158" style="fill:black;" font-family="Arial" font-size="16px">experience</text>
+   <rect width="94" height="20" x="368" y="164" style="fill:none;stroke:black;"/>
+   <text width="94" height="20" x="373" y="178" style="fill:black;" font-family="Arial" font-size="16px">agility</text>
+   <rect width="94" height="20" x="368" y="184" style="fill:none;stroke:black;"/>
+   <text width="94" height="20" x="373" y="198" style="fill:black;" font-family="Arial" font-size="16px">strength</text>
+   <rect width="94" height="20" x="368" y="204" style="fill:none;stroke:black;"/>
+   <text width="94" height="20" x="373" y="218" style="fill:black;" font-family="Arial" font-size="16px">magic</text>
+   <rect width="94" height="20" x="368" y="224" style="fill:none;stroke:black;"/>
+   <text width="94" height="20" x="373" y="238" style="fill:black;" font-family="Arial" font-size="16px">health</text>
+   <rect width="122" height="20" x="606" y="96" style="fill:#007;stroke:black;"/>
+   <text width="122" height="20" x="611" y="110" style="fill:#fff;" font-family="Arial" font-size="16px"> Character_Items</text>
+   <rect width="122" height="20" x="606" y="116" style="fill:none;stroke:black;"/>
+   <text width="122" height="20" x="611" y="130" style="fill:black;" font-family="Arial" font-size="16px">character_id</text>
+   <rect width="122" height="20" x="606" y="136" style="fill:none;stroke:black;"/>
+   <text width="122" height="20" x="611" y="150" style="fill:black;" font-family="Arial" font-size="16px">item_id</text>
+   <rect width="122" height="20" x="606" y="156" style="fill:none;stroke:black;"/>
+   <text width="122" height="20" x="611" y="170" style="fill:black;" font-family="Arial" font-size="16px">quantity</text>
+   <rect width="79" height="20" x="609" y="253" style="fill:#007;stroke:black;"/>
+   <text width="79" height="20" x="614" y="267" style="fill:#fff;" font-family="Arial" font-size="16px"> Items</text>
+   <rect width="79" height="20" x="609" y="273" style="fill:#aea;stroke:black;"/>
+   <text width="79" height="20" x="614" y="287" style="fill:black;" font-family="Arial" font-size="16px">item_id</text>
+   <rect width="79" height="20" x="609" y="293" style="fill:none;stroke:black;"/>
+   <text width="79" height="20" x="614" y="307" style="fill:black;" font-family="Arial" font-size="16px">item_desc</text>
+   <rect width="79" height="20" x="609" y="313" style="fill:none;stroke:black;"/>
+   <text width="79" height="20" x="614" y="327" style="fill:black;" font-family="Arial" font-size="16px">item_type</text>
+   <rect width="79" height="20" x="609" y="333" style="fill:none;stroke:black;"/>
+   <text width="79" height="20" x="614" y="347" style="fill:black;" font-family="Arial" font-size="16px">item_stat</text>
+   <rect width="81" height="20" x="373" y="298" style="fill:#007;stroke:black;"/>
+   <text width="81" height="20" x="378" y="312" style="fill:#fff;" font-family="Arial" font-size="16px"> Players</text>
+   <rect width="81" height="20" x="373" y="318" style="fill:#aea;stroke:black;"/>
+   <text width="81" height="20" x="378" y="332" style="fill:black;" font-family="Arial" font-size="16px">player_id</text>
+   <rect width="81" height="20" x="373" y="338" style="fill:none;stroke:black;"/>
+   <text width="81" height="20" x="378" y="352" style="fill:black;" font-family="Arial" font-size="16px">username</text>
+   <rect width="81" height="20" x="373" y="358" style="fill:none;stroke:black;"/>
+   <text width="81" height="20" x="378" y="372" style="fill:black;" font-family="Arial" font-size="16px">session_id</text>
+   <rect width="101" height="20" x="93" y="156" style="fill:#007;stroke:black;"/>
+   <text width="101" height="20" x="98" y="170" style="fill:#fff;" font-family="Arial" font-size="16px"> Sessions</text>
+   <rect width="101" height="20" x="93" y="176" style="fill:#aea;stroke:black;"/>
+   <text width="101" height="20" x="98" y="190" style="fill:black;" font-family="Arial" font-size="16px">session_id</text>
+   <rect width="101" height="20" x="93" y="196" style="fill:none;stroke:black;"/>
+   <text width="101" height="20" x="98" y="210" style="fill:black;" font-family="Arial" font-size="16px">start_time</text>
+   <rect width="101" height="20" x="93" y="216" style="fill:none;stroke:black;"/>
+   <text width="101" height="20" x="98" y="230" style="fill:black;" font-family="Arial" font-size="16px">num_players</text>
+   <rect width="101" height="20" x="93" y="236" style="fill:none;stroke:black;"/>
+   <text width="101" height="20" x="98" y="250" style="fill:black;" font-family="Arial" font-size="16px">map_location</text>
+</svg>
