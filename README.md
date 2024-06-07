@@ -1,5 +1,14 @@
 # CS340 Portfolio Project - FutureGadgetDB
 
+## Table of Contents
+[Technologies Used](##-technologies-used)
+[The Database](##-the-database)
+    [Sessions](###-sessions)
+        [Relationship with Players](####-relationship-with-players)
+    [Players](###-players)
+        [Relationship with Sessions](####-relationship-with-sessions)
+        [Relationship with Characters](####-relationship-with-characters)
+
 This project revolves around ocnnecting a normalized atabase to a web application. This project was
 done in collaboration with [Tiffany Gorseth](https://github.com/togrseth).
 
@@ -29,7 +38,7 @@ representing the session id of the server assigned to the player. This foreign k
 meaning that the player is not within any session. 
 
 #### Relationship with Sessions
-See [Sessions Relationship with Players](#relationship-with-players) section.
+See [Sessions Relationship with Players](####relationship-with-players) section.
 
 #### Relationship with Characters
 Players have a 1:M relationship with Characters, as Players can have mutliple Characters tied to their
