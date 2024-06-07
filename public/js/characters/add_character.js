@@ -101,6 +101,8 @@ addRowToTable = (data) => {
   deleteCell.onclick = function() {
     deleteCharacter(newRow.character_id);
   }
+
+  row.setAttribute("data-value", newRow.character_id);
   characterIdCell.innerText = newRow.character_id;
   playerIdCell.innerText = newRow.player_id;
   nameCell.innerText = newRow.name;

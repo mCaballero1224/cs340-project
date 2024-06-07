@@ -21,7 +21,7 @@
 	<tbody>
     {{!-- For each row, print the keys and attributes --}}
 		{{#each data}}
-		<tr data-value={{this.character_id}}>
+		<tr data-value="{{this.character_id}}">
       <td class="edit-link" onclick="setupCharacterEdit({{this.character_id}})">Edit</td>
       <td class="delete-link" onclick="deleteCharacter({{this.character_id}})">Delete</td>
 			<td>{{this.character_id}}</td>
