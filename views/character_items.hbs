@@ -4,13 +4,11 @@
 	<thead>
     {{!-- For just the first row, we print each key of the row object as a header cell so we know what each column menas when the page renders --}}
 		<tr>
-			<th><a href="">New</a></th>
+			<th class="new-link" onclick="showAddForm()">New</a></th>
 			<th></th>
-			{{#each data.[0]}}
-			<th>
-				{{@key}}
-			</th>
-			{{/each}}	
+			<th>Character ID</th>
+			<th>Item ID</th>
+			<th>Quantity</th>
 		</tr>
 	</thead>
   {{!-- Body section --}}
@@ -18,8 +16,8 @@
     {{!-- For each row, print the keys and attributes --}}
 		{{#each data}}
 		<tr>
-			<td><a href="">Edit</a></td>
-			<td><a href="">Delete</a></td>
+			<td></td>
+			<td></td>
 			<td>{{this.character_id}}</td>
 			<td>{{this.item_id}}</td>
 			<td>{{this.quantity}}</td>
@@ -27,4 +25,33 @@
     {{/each}}
 	</tbody>
 </table>
+<div class="form-btn-container">
+  <button class="toggle" onclick="toggleAddForm()">Show/Hide Add Form</button>
+</div>
+<div class="form-container">
+  <form class="add-entity-form hidden" id="add-inventory-form">
+    <fieldset>
+      <legend>Add Item Inventory</legend>
+      <label for="input-character-id">Character: </label>
+      <select name="input-character-id" id="input-character-id">
+        <option value="">Select a Character</option>
+        {{#each characters}}
+        <option value="{{character_id}}">{{name}} (#{{character_id}})</option>
+        {{/each}}
+      </select>
+      <label for="input-item-id">Item: </label>
+      <select name="input-item-id" id="input-item-id">
+        <option value="">Select an Item</option>
+        {{#each items}}
+        <option value="{{item_id}}">{{item_desc}} (#{{item_id}})</option>
+        {{/each}}
+      </select>
+      <label for="input-quantity">Quantity: </label>
+      <input type="number" min="1" max="100" name="input=quantity" id="input-quantity">
 
+      <input type="submit">
+    </fieldset>
+  </form>
+</div>
+<script src="./js/buttons.js"></script>
+<script src="./js/inventories/add_inventory.js"></script>

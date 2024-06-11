@@ -4,7 +4,7 @@
 	<thead>
     {{!-- For just the first row, we print each key of the row object as a header cell so we know what each column menas when the page renders --}}
 		<tr>
-			<th><a href="">New</a></th>
+			<th class="new-link" onclick="showAddForm()">New</th>
 			<th></th>
 			<th>Session ID</th>
 			<th>Start Time</th>
@@ -17,8 +17,8 @@
     {{!-- For each row, print the keys and attributes --}}
 		{{#each data}}
 		<tr>
-			<td><a href="">Edit</a></td>
-			<td><a href="">Delete</a></td>
+			<td></td>
+			<td></td>
 			<td>{{this.session_id}}</td>
 			<td>{{this.start_time}}</td>
 			<td>{{this.num_players}}</td>
@@ -28,21 +28,17 @@
 	</tbody>
 </table>
 <div class="form-btn-container">
+  <button class="toggle" onclick="toggleAddForm()">Show/Hide Add Form</button>
 </div>
 <div class="form-container">
-  <form>
+  <form class="add-entity-form hidden" id="add-session-form">
     <fieldset>
       <legend>Add a Session</legend>
-    </fieldset>
-  </form>
-  <form>
-    <fieldset>
-      <legend>Update a Session</legend>
-    </fieldset>
-  </form>
-  <form>
-    <fieldset>
-      <legend>Search by Map Location</legend>
+	<label for="input-map-location">Map Location: </label>
+	<input type="text" name="input-map-location" id="input-map-location">
+	<input type="submit">
     </fieldset>
   </form>
 </div>
+<script src="./js/sessions/add_session.js"></script>
+<script src="./js/buttons.js"></script>

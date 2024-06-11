@@ -252,6 +252,35 @@ app.get('/sessions', function(req, res) {
   });
 });
 
+app.post('/add-session', function (req, res, next) {
+	let data = req.body;
+	let startTime = data.start_time;
+	let numPlayers = data.num_players;
+	let mapLocation = data.map_location;
+
+	if (isNaN(numPlayers)) {
+		numPlayers = 0;
+	}
+
+	let addSessionQuery = `INSERT INTO Sessions (start_time, num_players, map_location) VALUES ("${startTime}", ${numPlayers}, "${mapLocation}")`	
+	let selectQuery = `SELECT * FROM Sessions`;
+
+	db.pool.query(addSessionQuery, function(error, rows, fields) {
+		if (error) {
+			console.log(error);
+			res.sendStatus(400);
+		} else {
+			db.pool.query(selectQuery, function(error, rows, fields) {
+				if (error) {
+					console.log(error);
+					res.sendStatus(400);
+				} else {
+					res.send(rows);
+				}
+			});
+		}
+	});
+});
 
 // Item Routes
 app.get('/items', function(req, res) {
@@ -301,8 +330,71 @@ app.post('/add-item', function(req, res, next) {
 // Inventory Routes
 app.get('/character_items', function(req, res) {
   let query1 = "SELECT * FROM  Character_Items;";
+  let query2 = "SELECT * FROM Characters";
+  let query3 = "SELECT * FROM Items";
+
+  let characters;
+  let items;
+  let characterItems;
+
   db.pool.query(query1, function(error, rows, fields) {
-    res.render('character_items', {pageTitle: 'CharacterItemsDB', flavorText: 'Intersection table describing what characters have what items.', headerImage: '/images/noun-inventory.png', data: rows});
+    if (error) {
+      console.log(error);
+      res.sendStatus(400);
+    } else {
+      characterItems = rows;
+      db.pool.query(query2, function(errors, rows, fields) {
+        if (error) {
+          console.log(error);
+          res.sendStatus(400);
+        } else {
+          characters = rows; 
+          db.pool.query(query3, function(errors, rows, fields) {
+            if (error) {
+              console.log(error);
+              res.sendStatus(400);
+            } else {
+               items = rows;
+               res.render('character_items', {
+                pageTitle: 'CharacterItemsDB',
+                flavorText: 'Intersection table describing what characters have what items.', 
+                headerImage: '/images/noun-character.png',
+                data: characterItems,
+                characters: characters,
+                items: items,
+               });
+            }
+          });
+        }
+      });
+    }
+  });
+});
+
+app.post('/add-inventory', function(req, res) {
+  let data = req.body;
+
+  let character_id = data.character_id;
+  let item_id = data.item_id;
+  let quantity = data.quantity;
+
+  let addInventory = `INSERT INTO Character_Items (character_id, item_id, quantity) VALUES (${character_id}, ${item_id}, ${quantity})`;
+  let selectQuery = `SELECT * FROM Character_Items`;
+
+  db.pool.query(addInventory, function(error, rows, fields) {
+    if (error) {
+      console.log(error);
+      res.sendStatus(400);
+    } else {
+      db.pool.query(selectQuery, function(error, rows, fields) {
+        if (error) {
+          console.log(error);
+          res.sendStatus(400);
+        } else {
+          res.send(rows);
+        }
+      });
+    }
   });
 });
 

@@ -1,6 +1,6 @@
 const addSessionForm = document.getElementById('add-session-form');
 
-addCharacterForm.addEventListener("submit", function(e) {
+addSessionForm.addEventListener("submit", function(e) {
 	e.preventDefault();
 
   if (!confirm("Are you sure you want to submit this query?")) {
@@ -8,40 +8,23 @@ addCharacterForm.addEventListener("submit", function(e) {
   }
 
   // get form fields to pull data from
-	const inputPlayerId = document.querySelector("#add-character-form fieldset #input-player-id");
-	const inputName = document.querySelector("#add-character-form fieldset #input-character-name");
-	const inputLevel = document.querySelector("#add-character-form fieldset #input-character-level");
-	const inputExperiencePoints = document.querySelector("#add-character-form fieldset #input-character-experience");
-	const inputAgility = document.querySelector("#add-character-form fieldset #input-character-agility");
-	const inputStrength = document.querySelector("#add-character-form fieldset #input-character-strength");
-	const inputMagic = document.querySelector("#add-character-form fieldset #input-character-magic");
-	const inputHealth = document.querySelector("#add-character-form fieldset #input-character-health");
+  const inputMapLocation = document.querySelector("#add-session-form fieldset #input-map-location");
 
+  const startTime = new Date();
   // pull data from form fields
-  let playerIdValue = inputPlayerId.value;
-  let nameValue = inputName.value;
-  let levelValue = inputLevel.value;
-  let experiencePointsValue = inputExperiencePoints.value;
-  let agilityValue  = inputAgility.value;
-  let strengthValue  = inputStrength.value;
-  let magicValue  = inputMagic.value;
-  let healthValue  = inputHealth.value;
+  let mapLocationValue = inputMapLocation.value;
+  let startTimeValue = startTime.toISOString().slice(0, 19).replace('T', ' ');
 
   // put data into an object to prep for sendoff
   let data = {
-    player_id: playerIdValue,
-    name: nameValue,
-    level: levelValue,
-    experience: experiencePointsValue,
-    agility: agilityValue,
-    strength: strengthValue,
-    magic: magicValue,
-    health: healthValue
+    map_location: mapLocationValue,
+    start_time: startTimeValue,
+    numPlayers: 0
   }
 
   // prep AJAX request
   var xhttp = new XMLHttpRequest();
-  xhttp.open("POST", "/add-character", true);
+  xhttp.open("POST", "/add-session", true);
   xhttp.setRequestHeader("Content-type", "application/json");
 
   // tell AJAX request how to resolve
@@ -50,14 +33,7 @@ addCharacterForm.addEventListener("submit", function(e) {
       // add new data to the table
       addRowToTable(xhttp.response);
       // clear the input fields for another transaction
-      playerIdValue = '';
-      nameValue = '';
-      levelValue = '';
-      experiencePointsValue = '';
-      agilityValue  = '';
-      strengthValue  = '';
-      magicValue  = '';
-      healthValue  = '';
+      mapLocationValue = '';
     } else if (xhttp.readyState == 4 && xhttp.status != 200) {
       console.log("There was an error with the input.");
     } 
@@ -83,15 +59,10 @@ addRowToTable = (data) => {
   let row = document.createElement("TR");
   let editCell = document.createElement("TD");
   let deleteCell = document.createElement("TD");
-  let characterIdCell = document.createElement("TD");
-  let playerIdCell = document.createElement("TD");
-  let nameCell = document.createElement("TD");
-  let levelCell = document.createElement("TD");
-  let experiencePointsCell = document.createElement("TD");
-  let agilityCell = document.createElement("TD");
-  let strengthCell = document.createElement("TD");
-  let magicCell = document.createElement("TD");
-  let healthCell = document.createElement("TD");
+  let sessionIdCell = document.createElement("TD");
+  let startTimeCell = document.createElement("TD");
+  let numPlayersCell = document.createElement("TD");
+  let mapLocationCell = document.createElement("TD");
 
   // fill cells with correct data
   editCell.innerHTML = `Edit`;
@@ -99,30 +70,24 @@ addRowToTable = (data) => {
   deleteCell.classList.add("delete-link");
   deleteCell.innerHTML = `Delete`;
   deleteCell.onclick = function() {
-    deleteCharacter(newRow.character_id);
+    deleteCharacter(newRow.session_id);
   }
-  characterIdCell.innerText = newRow.character_id;
-  playerIdCell.innerText = newRow.player_id;
-  nameCell.innerText = newRow.name;
-  levelCell.innerText = newRow.level;
-  experiencePointsCell.innerText = newRow.experience;
-  agilityCell.innerText = newRow.agility;
-  strengthCell.innerText = newRow.strength;
-  magicCell.innerText = newRow.magic;
-  healthCell.innerText = newRow.health;
+
+  let startTime = new Date(newRow.start_time);
+  console.log(startTime.toString());
+
+  sessionIdCell.innerText = newRow.session_id;
+  startTimeCell.innerText = startTime.toString();
+  numPlayersCell.innerText = newRow.num_players;
+  mapLocationCell.innerText = newRow.map_location;
 
   // add the cells to the row
   row.appendChild(editCell);
   row.appendChild(deleteCell);
-  row.appendChild(characterIdCell);
-  row.appendChild(playerIdCell);
-  row.appendChild(nameCell);
-  row.appendChild(levelCell);
-  row.appendChild(experiencePointsCell);
-  row.appendChild(agilityCell);
-  row.appendChild(strengthCell);
-  row.appendChild(magicCell);
-  row.appendChild(healthCell);
+  row.appendChild(sessionIdCell);
+  row.appendChild(startTimeCell);
+  row.appendChild(numPlayersCell);
+  row.appendChild(mapLocationCell);
   // add the row to the table
   currentTable.appendChild(row);
 
